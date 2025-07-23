@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CiscoIPPhoneDirectory>
+  <Title>Company Directory</Title>
+  <Prompt>Select a contact</Prompt>
+  <DirectoryEntry>
+    <Name>ZoHo Support (Option 2, Option 2)</Name>
+    <Telephone>8889009646</Telephone>
+  </DirectoryEntry>
+  <DirectoryEntry>
+    <Name>Perdigon Service Dept (Option 1 or ext 7812)</Name>
+    <Telephone>4357777811</Telephone>
+  </DirectoryEntry>
+  <DirectoryEntry>
+    <Name>Mike Allen Cell (Mike Cell)</Name>
+    <Telephone>530-933-6253</Telephone>
+  </DirectoryEntry>
+  <DirectoryEntry>
+    <Name>Mike Allen Video (Mike Video)</Name>
+    <Telephone>mike.allen@perdigon-group.com</Telephone>
+  </DirectoryEntry>
+</CiscoIPPhoneDirectory>
