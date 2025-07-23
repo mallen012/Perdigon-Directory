@@ -1,0 +1,26 @@
+[
+  {
+    "name": "ZoHo Support",
+    "department": "Support",
+    "number": 8889009646,
+    "notes": "Option 2, Option 2"
+  },
+  {
+    "name": "Perdigon Service Dept",
+    "department": "Service",
+    "number": 4357777811,
+    "notes": "Option 1 or ext 7812"
+  },
+  {
+    "name": "Mike Allen Cell",
+    "department": "Sales",
+    "number": "530-933-6253",
+    "notes": "Mike Cell"
+  },
+  {
+    "name": "Mike Allen Video",
+    "department": "Sales",
+    "number": "mike.allen@perdigon-group.com",
+    "notes": "Mike Video"
+  }
+]
