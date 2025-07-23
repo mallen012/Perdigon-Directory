@@ -22,5 +22,11 @@
     "department": "Sales",
     "number": "mike.allen@perdigon-group.com",
     "notes": "Mike Video"
+  },
+  {
+    "name": "Erik Peterson",
+    "department": "Sales",
+    "number": 8019033033,
+    "notes": "Erik Cell"
   }
 ]
