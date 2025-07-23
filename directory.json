@@ -28,5 +28,11 @@
     "department": "Sales",
     "number": 8019033033,
     "notes": "Erik Cell"
+  },
+  {
+    "name": "Luke Allen",
+    "department": "Sales",
+    "number": 9162958312,
+    "notes": "Luke A Cell"
   }
 ]
