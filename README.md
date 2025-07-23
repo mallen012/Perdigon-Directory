@@ -1,2 +1,2 @@
 # Perdigon-Directory
-Mike's PErdigon Directory Example
+Mike's Perdigon Directory Example
