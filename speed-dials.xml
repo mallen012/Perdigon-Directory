@@ -1,0 +1,65 @@
+<Panel>
+    <Order>4</Order>
+    <PanelId>speed-dials</PanelId>
+    <Origin>local</Origin>
+    <Location>HomeScreen</Location>
+    <Icon>Handset</Icon>
+    <Color>#1170CF</Color>
+    <Name>Perdigon Speed Dials</Name>
+    <ActivityType>Custom</ActivityType>
+    <Page>
+      <Name>Perdigon Speed Dials</Name>
+<Row>
+        <Name>Row</Name>
+
+          <Widget>
+            <WidgetId>sd_8889009646</WidgetId>
+            <Name>ZoHo Support</Name>
+            <Type>Button</Type>
+            <Options>size=2</Options>
+          </Widget>
+
+          <Widget>
+            <WidgetId>sd_4357777811</WidgetId>
+            <Name>Perdigon Service Dept</Name>
+            <Type>Button</Type>
+            <Options>size=2</Options>
+          </Widget>
+      </Row>
+<Row>
+        <Name>Row</Name>
+
+          <Widget>
+            <WidgetId>sd_530-933-6253</WidgetId>
+            <Name>Mike Allen Cell</Name>
+            <Type>Button</Type>
+            <Options>size=2</Options>
+          </Widget>
+
+          <Widget>
+            <WidgetId>sd_mike.allen.perdigon-group.com</WidgetId>
+            <Name>Mike Allen Video</Name>
+            <Type>Button</Type>
+            <Options>size=2</Options>
+          </Widget>
+      </Row>
+<Row>
+        <Name>Row</Name>
+
+          <Widget>
+            <WidgetId>sd_8019033033</WidgetId>
+            <Name>Erik Peterson</Name>
+            <Type>Button</Type>
+            <Options>size=2</Options>
+          </Widget>
+
+          <Widget>
+            <WidgetId>sd_916-295-8312</WidgetId>
+            <Name>Luke Allen</Name>
+            <Type>Button</Type>
+            <Options>size=2</Options>
+          </Widget>
+      </Row>
+      <Options>hideRowNames=1</Options>
+    </Page>
+  </Panel>
