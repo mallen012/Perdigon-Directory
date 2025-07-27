@@ -5,122 +5,29 @@
   <meta charset="UTF-8">
   <title>Perdigon Directory</title>
   <style>
-    body {
-      font-family: Montserrat, Arial, sans-serif;
-      background: #23272e;
-      color: #f3f3fa;
-      margin: 0;
-    }
-    .top-banner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #181a1f;
-      padding: 8px 24px 8px 16px;
-      min-height: 64px;
-    }
-    .banner-logo {
-      height: 40px;
-      margin-right: 18px;
-      filter: drop-shadow(0 2px 6px #0005);
-      background: transparent;
-      border-radius: 8px;
-    }
-    .banner-weather {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-      font-size: 1.09em;
-    }
-    .banner-weather-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      min-width: 140px;
-      padding: 0 5px;
-      background: rgba(36,36,42,0.12);
-      border-radius: 8px;
-    }
-    .banner-weather-item img {
-      width: 36px;
-      height: 36px;
-      margin-right: 3px;
-      vertical-align: middle;
-    }
-    .banner-date {
-      color: #ccd;
-      font-size: 1em;
-      letter-spacing: 0.01em;
-      text-align: center;
-      flex: 1;
-    }
-    .calendar-widget {
-      margin-top: 16px;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 24px;
-    }
-    .sms-invite-widget {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      margin: 16px 34px 8px 0;
-    }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      max-width: 900px;
-      margin: 24px auto 0 auto;
-      background: #292e36;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 4px 16px #1115;
-    }
-    th, td {
-      padding: 12px 8px;
-      border: 1px solid #444c;
-      text-align: left;
-    }
-    th {
-      font-weight: 700;
-      background: #222844;
-      color: #fff;
-      font-size: 1.05em;
-      letter-spacing: 0.02em;
-    }
-    td:last-child, th:last-child {
-      width: 33%;
-      min-width: 200px;
-    }
-    .dept-header-row td {
-      background: linear-gradient(90deg, #31418f 80%, #222844 120%);
-      color: #fff;
-      font-size: 1.12em;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      text-align: left;
-      padding: 22px 14px 10px 14px;
-      border-top: 3px solid #4f46e5;
-      border-bottom: 2px solid #3c3c60;
-    }
-    tr.dept-space td {
-      border: none !important;
-      height: 6px;
-      background: transparent;
-      padding: 0;
-    }
-    a, a:visited {
-      color: #4f46e5;
-      text-decoration: underline;
-    }
-    .footer {
-      text-align: center;
-      font-size: small;
-      color: #888;
-      margin-top: 32px;
-      padding-bottom: 24px;
-    }
+    body { font-family: Montserrat, Arial, sans-serif; background: #23272e; color: #f3f3fa; margin: 0; }
+    .top-banner { display: flex; align-items: center; justify-content: space-between; background: #181a1f; padding: 8px 24px 8px 16px; min-height: 64px; }
+    .banner-logo { height: 40px; margin-right: 18px; filter: drop-shadow(0 2px 6px #0005); background: transparent; border-radius: 8px; }
+    .banner-weather { display: flex; gap: 24px; align-items: center; font-size: 1.09em; }
+    .banner-weather-item { display: flex; align-items: center; gap: 6px; min-width: 140px; padding: 0 5px; background: rgba(36,36,42,0.12); border-radius: 8px; }
+    .banner-weather-item img { width: 36px; height: 36px; margin-right: 3px; vertical-align: middle; }
+    .banner-date { color: #ccd; font-size: 1em; letter-spacing: 0.01em; text-align: center; flex: 1; }
+    .sms-invite-widget { display: flex; justify-content: flex-end; align-items: center; margin: 18px 34px 14px 0; }
+    table { border-collapse: collapse; width: 100%; max-width: 900px; margin: 24px auto 0 auto; background: #292e36; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 16px #1115; }
+    th, td { padding: 12px 8px; border: 1px solid #444c; text-align: left; }
+    th { font-weight: 700; background: #222844; color: #fff; font-size: 1.05em; letter-spacing: 0.02em; }
+    td:last-child, th:last-child { width: 33%; min-width: 200px; }
+    .dept-header-row td { background: linear-gradient(90deg, #31418f 80%, #222844 120%); color: #fff; font-size: 1.12em; font-weight: 700; letter-spacing: 0.03em; text-align: left; padding: 22px 14px 10px 14px; border-top: 3px solid #4f46e5; border-bottom: 2px solid #3c3c60; }
+    tr.dept-space td { border: none !important; height: 6px; background: transparent; padding: 0; }
+    a, a:visited { color: #4f46e5; text-decoration: underline; }
+    .footer { text-align: center; font-size: small; color: #888; margin-top: 32px; padding-bottom: 24px; }
+    /* SMS Invite styling */
+    #smsForm { max-width:400px; margin:16px auto 14px auto; padding:20px; background:#292e36; border-radius:12px; box-shadow:0 2px 10px #0002; }
+    #smsForm h3 { color:#4f46e5; margin-bottom:10px; }
+    #smsForm label { color:#fff; }
+    #smsForm input[type=tel] { width:100%; margin-bottom:10px; padding:8px; border-radius:6px; border:1px solid #888; font-size:1.1em; }
+    #smsForm button { background:#4f46e5; color:#fff; padding:10px 20px; border:none; border-radius:8px; font-weight:600; font-size:1.1em; }
+    #smsStatus { margin-top:12px; color:#b5d1ff; }
   </style>
 </head>
 <body>
@@ -132,16 +39,16 @@
         <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Weather">
         <div>
           <strong>Lincoln, CA</strong><br>
-          71&deg;F &nbsp; <span style="color:#b3b3cf">Clear</span><br>
-          <span style="font-size:0.93em;color:#aaa;">H: 75&deg; / L: 66&deg;</span>
+          84&deg;F &nbsp; <span style="color:#b3b3cf">Clear</span><br>
+          <span style="font-size:0.93em;color:#aaa;">H: 87&deg; / L: 79&deg;</span>
         </div>
       </div>
       <div class="banner-weather-item">
-        <img src="https://openweathermap.org/img/wn/03d@2x.png" alt="Weather">
+        <img src="https://openweathermap.org/img/wn/50d@2x.png" alt="Weather">
         <div>
           <strong>Mapleton, UT</strong><br>
-          83&deg;F &nbsp; <span style="color:#b3b3cf">Clouds</span><br>
-          <span style="font-size:0.93em;color:#aaa;">H: 83&deg; / L: 81&deg;</span>
+          89&deg;F &nbsp; <span style="color:#b3b3cf">Haze</span><br>
+          <span style="font-size:0.93em;color:#aaa;">H: 89&deg; / L: 87&deg;</span>
         </div>
       </div>
     </div>
@@ -159,12 +66,43 @@
     updateBannerDate();
     setInterval(updateBannerDate, 15000);
   </script>
-  <div class="calendar-widget">
-    <iframe src="https://calendar.google.com/calendar/embed?src=your_calendar_id&ctz=America/Los_Angeles" style="border:0; width:350px; height:190px; background:#1112; border-radius:12px; margin:0 20px;" frameborder="0" scrolling="no"></iframe>
-  </div>
-  <div class="sms-invite-widget">
-    <a href="sms:15555551212?body=Join%20our%20call%3A%20https%3A%2F%2Fwebex.com%2Fmeet%2Fperdigon" style="background:#4f46e5; color:#fff; text-decoration:none; font-weight:600; padding:12px 20px; border-radius:7px; margin-left:14px; font-size:1.08em;display:inline-block;">SMS Invite</a>
-  </div>
+
+  <!-- SMS INVITE WIDGET -->
+  <form id="smsForm">
+    <h3>Invite a Guest to Call</h3>
+    <label for="smsNumber">Mobile Number:</label><br>
+    <input type="tel" id="smsNumber" name="number" required pattern="^\+1\d{10}$" placeholder="+15551234567"><br>
+    <input type="hidden" name="sip" value="mike.allen@perdigon-group.com">
+    <button type="submit">Send SMS Invite</button>
+    <div id="smsStatus"></div>
+  </form>
+  <script>
+    document.getElementById('smsForm').onsubmit = async function(e) {
+      e.preventDefault();
+      const smsStatus = document.getElementById('smsStatus');
+      smsStatus.textContent = "Sending...";
+      try {
+        const res = await fetch('https://script.google.com/macros/s/AKfycbyg2C1DcsnyvQta3Sp6lHZwsU4gykwy6flSW_cz1MY80Kon4bvsk_uW4uZncbe1XKL5yw/exec', {
+          method: "POST",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify({
+            sip: document.querySelector('input[name="sip"]').value,
+            number: document.getElementById('smsNumber').value
+          })
+        });
+        const data = await res.json();
+        if(data.success || data.status == "success" || res.status == 200) {
+          smsStatus.textContent = "Invite sent!";
+        } else if(data.error) {
+          smsStatus.textContent = "Error: " + data.error;
+        } else {
+          smsStatus.textContent = "Request complete: " + JSON.stringify(data);
+        }
+      } catch (err) {
+        smsStatus.textContent = "Error: " + err.message;
+      }
+    };
+  </script>
   <table>
     <tr>
       <th>Name</th>
