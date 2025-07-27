@@ -31,8 +31,8 @@
     .agenda-event { display: flex; align-items: center; gap: 8px; padding: 4px 0 6px 0; }
     .agenda-time { font-weight: bold; color: #4f46e5; width: 72px; }
     .agenda-title { flex: 1 1 auto; }
-    .agenda-join { margin-left: 12px; background: #4f46e5; color: #fff; padding: 6px 14px; border-radius: 6px; text-decoration: none; font-size: .99em; }
-    .agenda-join:hover { background: #6057e0; }
+    .agenda-join { margin-left: 12px; background: #ffe066; color: #181a1f; padding: 6px 18px; border-radius: 6px; text-decoration: none; font-size: .99em; font-weight: 700; border:none;}
+    .agenda-join:hover { background: #ffd000; color:#000;}
     .agenda-empty { color: #aaa; padding: 10px 0 12px 0; }
     @media (max-width: 1000px) {
       .main-content { flex-direction: column; align-items: stretch; gap: 0; }
@@ -50,19 +50,19 @@
     <div class="banner-date" id="banner-date"></div>
     <div class="banner-weather">
       <div class="banner-weather-item">
-        <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Weather">
-        <div>
+        <span title="Clear" style="font-size:2em;">??</span> <img src="https://openweathermap.org/img/wn/01d@2x.png" style="width:34px;height:34px;vertical-align:middle;filter:drop-shadow(0 1px 2px #0007);" alt="Clear">
+        <div style="margin-left:6px;">
           <strong>Lincoln, CA</strong><br>
           90&deg;F &nbsp; <span style="color:#b3b3cf">Clear</span><br>
           <span style="font-size:0.93em;color:#aaa;">H: 91&deg; / L: 85&deg;</span>
         </div>
       </div>
       <div class="banner-weather-item">
-        <img src="https://openweathermap.org/img/wn/04d@2x.png" alt="Weather">
-        <div>
+        <span title="Clear" style="font-size:2em;">??</span> <img src="https://openweathermap.org/img/wn/01d@2x.png" style="width:34px;height:34px;vertical-align:middle;filter:drop-shadow(0 1px 2px #0007);" alt="Clear">
+        <div style="margin-left:6px;">
           <strong>Mapleton, UT</strong><br>
-          90&deg;F &nbsp; <span style="color:#b3b3cf">Clouds</span><br>
-          <span style="font-size:0.93em;color:#aaa;">H: 91&deg; / L: 89&deg;</span>
+          89&deg;F &nbsp; <span style="color:#b3b3cf">Clear</span><br>
+          <span style="font-size:0.93em;color:#aaa;">H: 92&deg; / L: 89&deg;</span>
         </div>
       </div>
     </div>
@@ -101,7 +101,7 @@
   <div class="agenda-list" id="agenda-today" style="display:none;">
     
       <div class="agenda-event">
-        <span class="agenda-time">3:00 PM</span>
+        <span class="agenda-time">5:00 PM</span>
         <span class="agenda-title">Perdigon Test Directory</span>
         <a href="https://perdigon.webex.com/meet/mike.allen" target="_blank" class="agenda-join">Join Meeting</a>
       </div>
@@ -125,12 +125,30 @@
 
       
   <div class="custom-widget" style="background:#232d39;border-radius:12px;box-shadow:0 2px 8px #0002;padding:18px 16px;margin-top:24px;color:#ffe066;text-align:center;">
-    <!-- Example widget: Quick Links (replace or customize!) -->
     <span style="font-size:1.1em;font-weight:700;letter-spacing:.02em;color:#ffd700;">Quick Links</span>
     <div style="margin-top:12px;">
       <a href="https://webex.com/meet/perdigon" target="_blank" style="background:#4f46e5;color:#fff;padding:8px 18px;border-radius:7px;margin:6px 6px 0 0;display:inline-block;text-decoration:none;">Webex Room</a>
       <a href="https://support.perdigon-group.com/" target="_blank" style="background:#2fbb71;color:#fff;padding:8px 18px;border-radius:7px;margin:6px 6px 0 0;display:inline-block;text-decoration:none;">Submit Ticket</a>
       <a href="https://perdigon-group.com" target="_blank" style="background:#e6b400;color:#23272e;padding:8px 18px;border-radius:7px;margin:6px 6px 0 0;display:inline-block;text-decoration:none;">Company Website</a>
+    </div>
+  </div>
+  
+      
+  <div class="device-status-widget" style="background:#1b222c;border-radius:12px;padding:16px 16px 14px 16px;margin-top:26px;box-shadow:0 2px 8px #0003;">
+    <span style="font-size:1.15em;font-weight:700;letter-spacing:.01em;color:#81e4f7;">Room/Device Status</span>
+    <div style="margin-top:10px;display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="display:inline-block;width:16px;height:16px;border-radius:50%;background:#2ecc40;margin-right:6px;"></span>
+        DeskPro Lincoln <span style="margin-left:auto;color:#69efc7;font-size:.95em;">Online</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="display:inline-block;width:16px;height:16px;border-radius:50%;background:#ffd000;margin-right:6px;"></span>
+        Conference Room <span style="margin-left:auto;color:#ffe066;font-size:.95em;">In Call</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="display:inline-block;width:16px;height:16px;border-radius:50%;background:#d32f2f;margin-right:6px;"></span>
+        Mapleton Boardroom <span style="margin-left:auto;color:#ffbaba;font-size:.95em;">Offline</span>
+      </div>
     </div>
   </div>
   
