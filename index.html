@@ -24,6 +24,7 @@
       margin-right: 18px;
       filter: drop-shadow(0 2px 6px #0005);
       background: transparent;
+      border-radius: 8px;
     }
     .banner-weather {
       display: flex;
@@ -53,10 +54,73 @@
       text-align: center;
       flex: 1;
     }
-    /* ...rest of your table/theme CSS from earlier... */
-    .header { display:none; } /* hide old logo/title area */
-    /* ... */
-    /* (Insert rest of your main directory/table CSS here) */
+    .calendar-widget {
+      margin-top: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 24px;
+    }
+    .sms-invite-widget {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin: 16px 34px 8px 0;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 900px;
+      margin: 24px auto 0 auto;
+      background: #292e36;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px #1115;
+    }
+    th, td {
+      padding: 12px 8px;
+      border: 1px solid #444c;
+      text-align: left;
+    }
+    th {
+      font-weight: 700;
+      background: #222844;
+      color: #fff;
+      font-size: 1.05em;
+      letter-spacing: 0.02em;
+    }
+    td:last-child, th:last-child {
+      width: 33%;
+      min-width: 200px;
+    }
+    .dept-header-row td {
+      background: linear-gradient(90deg, #31418f 80%, #222844 120%);
+      color: #fff;
+      font-size: 1.12em;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-align: left;
+      padding: 22px 14px 10px 14px;
+      border-top: 3px solid #4f46e5;
+      border-bottom: 2px solid #3c3c60;
+    }
+    tr.dept-space td {
+      border: none !important;
+      height: 6px;
+      background: transparent;
+      padding: 0;
+    }
+    a, a:visited {
+      color: #4f46e5;
+      text-decoration: underline;
+    }
+    .footer {
+      text-align: center;
+      font-size: small;
+      color: #888;
+      margin-top: 32px;
+      padding-bottom: 24px;
+    }
   </style>
 </head>
 <body>
@@ -68,16 +132,16 @@
         <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Weather">
         <div>
           <strong>Lincoln, CA</strong><br>
-          68&deg;F &nbsp; <span style="color:#b3b3cf">Clear</span><br>
-          <span style="font-size:0.93em;color:#aaa;">H: 73&deg; / L: 63&deg;</span>
+          71&deg;F &nbsp; <span style="color:#b3b3cf">Clear</span><br>
+          <span style="font-size:0.93em;color:#aaa;">H: 75&deg; / L: 66&deg;</span>
         </div>
       </div>
       <div class="banner-weather-item">
-        <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Weather">
+        <img src="https://openweathermap.org/img/wn/03d@2x.png" alt="Weather">
         <div>
           <strong>Mapleton, UT</strong><br>
-          75&deg;F &nbsp; <span style="color:#b3b3cf">Clear</span><br>
-          <span style="font-size:0.93em;color:#aaa;">H: 81&deg; / L: 74&deg;</span>
+          83&deg;F &nbsp; <span style="color:#b3b3cf">Clouds</span><br>
+          <span style="font-size:0.93em;color:#aaa;">H: 83&deg; / L: 81&deg;</span>
         </div>
       </div>
     </div>
@@ -95,7 +159,20 @@
     updateBannerDate();
     setInterval(updateBannerDate, 15000);
   </script>
-<table><tr><th>Name</th><th>Department</th><th>Number</th><th>Notes</th></tr><tr><td class="dept-header" colspan="4">Sales</td></tr><tr><td>Erik Peterson</td><td>Sales</td><td><a href="tel:801-903-3033">801-903-3033</a></td><td>Erik Cell</td></tr><tr><td>Erik PMR</td><td>Sales</td><td><a href="tel:erik.perdigon@webex.com">erik.perdigon@webex.com</a></td><td>Join from Device</td></tr><tr><td>Luke Allen</td><td>Sales</td><td><a href="tel:916-295-8312">916-295-8312</a></td><td>Luke A Cell</td></tr><tr><td>Mike Allen Cell</td><td>Sales</td><td><a href="tel:530-933-6253">530-933-6253</a></td><td>Mike Cell</td></tr><tr><td>Mike Allen Video</td><td>Sales</td><td><a href="tel:mike.allen@perdigon-group.com">mike.allen@perdigon-group.com</a></td><td>Mike Video</td></tr><tr><td>Mike PMR</td><td>Sales</td><td><a href="tel:mike.allen.perdigon@webex.com">mike.allen.perdigon@webex.com</a></td><td>Join from Device</td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr><td class="dept-header" colspan="4">Service</td></tr><tr><td>Perdigon Service Dept</td><td>Service</td><td><a href="tel:435-777-7811">435-777-7811</a></td><td>Option 1 or ext 7812</td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr><td class="dept-header" colspan="4">Vendor</td></tr><tr><td>ZoHo Support</td><td>Vendor</td><td><a href="tel:888-900-9646">888-900-9646</a></td><td>Option 2, Option 2</td></tr></table>
+  <div class="calendar-widget">
+    <iframe src="https://calendar.google.com/calendar/embed?src=your_calendar_id&ctz=America/Los_Angeles" style="border:0; width:350px; height:190px; background:#1112; border-radius:12px; margin:0 20px;" frameborder="0" scrolling="no"></iframe>
+  </div>
+  <div class="sms-invite-widget">
+    <a href="sms:15555551212?body=Join%20our%20call%3A%20https%3A%2F%2Fwebex.com%2Fmeet%2Fperdigon" style="background:#4f46e5; color:#fff; text-decoration:none; font-weight:600; padding:12px 20px; border-radius:7px; margin-left:14px; font-size:1.08em;display:inline-block;">SMS Invite</a>
+  </div>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Department</th>
+      <th>Number</th>
+      <th>Notes</th>
+    </tr>
+<tr class="dept-header-row"><td colspan="4">Sales</td></tr><tr><td>Erik Peterson</td><td>Sales</td><td><a href="tel:801-903-3033">801-903-3033</a></td><td>Erik Cell</td></tr><tr><td>Erik PMR</td><td>Sales</td><td><a href="tel:erik.perdigon@webex.com">erik.perdigon@webex.com</a></td><td>Join from Device</td></tr><tr><td>Luke Allen</td><td>Sales</td><td><a href="tel:916-295-8312">916-295-8312</a></td><td>Luke A Cell</td></tr><tr><td>Mike Allen Cell</td><td>Sales</td><td><a href="tel:530-933-6253">530-933-6253</a></td><td>Mike Cell</td></tr><tr><td>Mike Allen Video</td><td>Sales</td><td><a href="tel:mike.allen@perdigon-group.com">mike.allen@perdigon-group.com</a></td><td>Mike Video</td></tr><tr><td>Mike PMR</td><td>Sales</td><td><a href="tel:mike.allen.perdigon@webex.com">mike.allen.perdigon@webex.com</a></td><td>Join from Device</td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr class="dept-header-row"><td colspan="4">Service</td></tr><tr><td>Perdigon Service Dept</td><td>Service</td><td><a href="tel:435-777-7811">435-777-7811</a></td><td>Option 1 or ext 7812</td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr class="dept-header-row"><td colspan="4">Vendor</td></tr><tr><td>ZoHo Support</td><td>Vendor</td><td><a href="tel:888-900-9646">888-900-9646</a></td><td>Option 2, Option 2</td></tr></table>
   <div class="footer">
     Generated by Perdigon ? &copy; Mike Allen
   </div>
