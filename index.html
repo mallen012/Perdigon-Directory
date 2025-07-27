@@ -11,109 +11,93 @@
       color: #f3f3fa;
       margin: 0;
     }
-    @media (prefers-color-scheme: light) {
-      body { background: #f8f8fc; color: #222; }
-      .header { background: #4f46e5; color: #fff; }
-      table { background: #fff; }
-      th, .dept-header { background: #4f46e5; color: #fff; }
-      tr:nth-child(even) { background: #f0f4fc; }
-    }
-    @media (prefers-color-scheme: dark) {
-      body { background: #23272e; color: #f3f3fa; }
-      .header { background: #181a1f; color: #fff; }
-      table { background: #292e36; }
-      th, .dept-header { background: #222844; color: #fff; }
-      tr:nth-child(even) { background: #23272e; }
-    }
-    .header {
+    .top-banner {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      padding: 36px 0 12px 0;
+      justify-content: space-between;
       background: #181a1f;
+      padding: 8px 24px 8px 16px;
+      min-height: 64px;
     }
-    .header img {
-      max-width: 160px;
-      margin-bottom: 12px;
+    .banner-logo {
+      height: 40px;
+      margin-right: 18px;
       filter: drop-shadow(0 2px 6px #0005);
-    }
-    h1 {
-      font-weight: 700;
-      margin: 0 0 24px 0;
-      letter-spacing: 0.01em;
-    }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-      background: #292e36;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 4px 16px #1115;
-    }
-    th, td {
-      padding: 12px 8px;
-      border: 1px solid #444c;
-      text-align: left;
-    }
-    th {
-      font-weight: 700;
-      background: #222844;
-      color: #fff;
-      font-size: 1.05em;
-      letter-spacing: 0.02em;
-    }
-    td:last-child, th:last-child {
-      width: 33%;
-      min-width: 200px;
-    }
-    .dept-header {
-      background: #31418f;
-      color: #fff;
-      font-size: 1.08em;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      text-align: left;
-      padding: 16px 14px 12px 14px;
-      border-top: 3px solid #4f46e5;
-      border-bottom: 2px solid #3c3c60;
-    }
-    tr.dept-space td {
-      border: none !important;
-      height: 6px;
       background: transparent;
-      padding: 0;
     }
-    a, a:visited {
-      color: #4f46e5;
-      text-decoration: underline;
+    .banner-weather {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      font-size: 1.09em;
     }
-    .footer {
+    .banner-weather-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-width: 140px;
+      padding: 0 5px;
+      background: rgba(36,36,42,0.12);
+      border-radius: 8px;
+    }
+    .banner-weather-item img {
+      width: 36px;
+      height: 36px;
+      margin-right: 3px;
+      vertical-align: middle;
+    }
+    .banner-date {
+      color: #ccd;
+      font-size: 1em;
+      letter-spacing: 0.01em;
       text-align: center;
-      font-size: small;
-      color: #888;
-      margin-top: 32px;
-      padding-bottom: 24px;
+      flex: 1;
     }
+    /* ...rest of your table/theme CSS from earlier... */
+    .header { display:none; } /* hide old logo/title area */
+    /* ... */
+    /* (Insert rest of your main directory/table CSS here) */
   </style>
 </head>
 <body>
-  <div class="header">
-    <img src="https://contacts.zoho.com/file?ot=8&t=serviceorg&ID=875211146" alt="Perdigon Logo" onerror="this.style.display='none';">
-    <h1>Perdigon Directory</h1>
+  <div class="top-banner">
+    <img class="banner-logo" src="https://mallen012.github.io/Perdigon-Directory/Blue%20Logo.png" alt="Perdigon Logo" onerror="this.style.display='none';">
+    <div class="banner-date" id="banner-date"></div>
+    <div class="banner-weather">
+      <div class="banner-weather-item">
+        <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Weather">
+        <div>
+          <strong>Lincoln, CA</strong><br>
+          68&deg;F &nbsp; <span style="color:#b3b3cf">Clear</span><br>
+          <span style="font-size:0.93em;color:#aaa;">H: 73&deg; / L: 63&deg;</span>
+        </div>
+      </div>
+      <div class="banner-weather-item">
+        <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Weather">
+        <div>
+          <strong>Mapleton, UT</strong><br>
+          75&deg;F &nbsp; <span style="color:#b3b3cf">Clear</span><br>
+          <span style="font-size:0.93em;color:#aaa;">H: 81&deg; / L: 74&deg;</span>
+        </div>
+      </div>
+    </div>
   </div>
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Department</th>
-      <th>Number</th>
-      <th>Notes</th>
-    </tr>
-<tr><td class="dept-header" colspan="4">Sales</td></tr><tr><td>Erik Peterson</td><td>Sales</td><td><a href="tel:801-903-3033">801-903-3033</a></td><td>Erik Cell</td></tr><tr><td>Erik PMR</td><td>Sales</td><td><a href="tel:erik.perdigon@webex.com">erik.perdigon@webex.com</a></td><td>Join from Device</td></tr><tr><td>Luke Allen</td><td>Sales</td><td><a href="tel:916-295-8312">916-295-8312</a></td><td>Luke A Cell</td></tr><tr><td>Mike Allen Cell</td><td>Sales</td><td><a href="tel:530-933-6253">530-933-6253</a></td><td>Mike Cell</td></tr><tr><td>Mike Allen Video</td><td>Sales</td><td><a href="tel:mike.allen@perdigon-group.com">mike.allen@perdigon-group.com</a></td><td>Mike Video</td></tr><tr><td>Mike PMR</td><td>Sales</td><td><a href="tel:mike.allen.perdigon@webex.com">mike.allen.perdigon@webex.com</a></td><td>Join from Device</td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr><td class="dept-header" colspan="4">Service</td></tr><tr><td>Perdigon Service Dept</td><td>Service</td><td><a href="tel:435-777-7811">435-777-7811</a></td><td>Option 1 or ext 7812</td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr><td class="dept-header" colspan="4">Vendor</td></tr><tr><td>ZoHo Support</td><td>Vendor</td><td><a href="tel:888-900-9646">888-900-9646</a></td><td>Option 2, Option 2</td></tr>
-  </table>
+  <script>
+    // Live date/time in banner
+    function updateBannerDate() {
+      var now = new Date();
+      var dateStr = now.toLocaleString('en-US', {
+        weekday: 'short', month: 'short', day: '2-digit', year: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+      });
+      document.getElementById('banner-date').textContent = dateStr;
+    }
+    updateBannerDate();
+    setInterval(updateBannerDate, 15000);
+  </script>
+<table><tr><th>Name</th><th>Department</th><th>Number</th><th>Notes</th></tr><tr><td class="dept-header" colspan="4">Sales</td></tr><tr><td>Erik Peterson</td><td>Sales</td><td><a href="tel:801-903-3033">801-903-3033</a></td><td>Erik Cell</td></tr><tr><td>Erik PMR</td><td>Sales</td><td><a href="tel:erik.perdigon@webex.com">erik.perdigon@webex.com</a></td><td>Join from Device</td></tr><tr><td>Luke Allen</td><td>Sales</td><td><a href="tel:916-295-8312">916-295-8312</a></td><td>Luke A Cell</td></tr><tr><td>Mike Allen Cell</td><td>Sales</td><td><a href="tel:530-933-6253">530-933-6253</a></td><td>Mike Cell</td></tr><tr><td>Mike Allen Video</td><td>Sales</td><td><a href="tel:mike.allen@perdigon-group.com">mike.allen@perdigon-group.com</a></td><td>Mike Video</td></tr><tr><td>Mike PMR</td><td>Sales</td><td><a href="tel:mike.allen.perdigon@webex.com">mike.allen.perdigon@webex.com</a></td><td>Join from Device</td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr><td class="dept-header" colspan="4">Service</td></tr><tr><td>Perdigon Service Dept</td><td>Service</td><td><a href="tel:435-777-7811">435-777-7811</a></td><td>Option 1 or ext 7812</td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr><td class="dept-header" colspan="4">Vendor</td></tr><tr><td>ZoHo Support</td><td>Vendor</td><td><a href="tel:888-900-9646">888-900-9646</a></td><td>Option 2, Option 2</td></tr></table>
   <div class="footer">
-    Generated by Perdigon | &copy; Mike Allen
+    Generated by Perdigon ? &copy; Mike Allen
   </div>
 </body>
 </html>
