@@ -162,6 +162,16 @@
             <Options>size=2</Options>
           </Widget>
       </Row>
+<Row>
+        <Name>Row</Name>
+
+          <Widget>
+            <WidgetId>sd_adurham1.lenovo.com</WidgetId>
+            <Name>Ashley Durham</Name>
+            <Type>Button</Type>
+            <Options>size=2</Options>
+          </Widget>
+      </Row>
       <Options>hideRowNames=1</Options>
     </Page>
   </Panel>
