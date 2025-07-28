@@ -81,7 +81,7 @@
     "name": "Dave Noel",
     "department": "Quest",
     "number": "916-634-7687",
-    "notes": "David_Noel@questsys.com"
+    "notes": ""
   },
   {
     "name": "Ashley Durham",
@@ -100,5 +100,11 @@
     "department": "Quest",
     "number": "adam_burke@questsys.com",
     "notes": "VP of Sales"
+  },
+  {
+    "name": "Dave Noel",
+    "department": "Quest",
+    "number": "David_Noel@questsys.com",
+    "notes": ""
   }
 ]
