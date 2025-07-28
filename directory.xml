@@ -55,7 +55,7 @@
     <Telephone>916-609-8049</Telephone>
   </DirectoryEntry>
   <DirectoryEntry>
-    <Name>Dave Noel (David_Noel@questsys.com)</Name>
+    <Name>Dave Noel</Name>
     <Telephone>916-634-7687</Telephone>
   </DirectoryEntry>
   <DirectoryEntry>
@@ -69,5 +69,9 @@
   <DirectoryEntry>
     <Name>Adam Burke  (VP of Sales)</Name>
     <Telephone>adam_burke@questsys.com</Telephone>
+  </DirectoryEntry>
+  <DirectoryEntry>
+    <Name>Dave Noel</Name>
+    <Telephone>David_Noel@questsys.com</Telephone>
   </DirectoryEntry>
 </CiscoIPPhoneDirectory>
