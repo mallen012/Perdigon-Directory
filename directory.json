@@ -64,5 +64,11 @@
     "department": "Testing",
     "number": "(916) 312-3122",
     "notes": "DialPad DID"
+  },
+  {
+    "name": "Andie Peterson",
+    "department": "HR",
+    "number": "801-473-6696",
+    "notes": ""
   }
 ]
