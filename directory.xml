@@ -3,39 +3,39 @@
   <Title>Company Directory</Title>
   <Prompt>Select a contact</Prompt>
   <DirectoryEntry>
-    <Name>ZoHo Support (Option 2, Option 2)</Name>
+    <Name>ZoHo Support</Name>
     <Telephone>888-900-9646</Telephone>
   </DirectoryEntry>
   <DirectoryEntry>
-    <Name>Perdigon Service Dept (Option 1 or ext 7812)</Name>
+    <Name>Perdigon Service Dept</Name>
     <Telephone>435-777-7811</Telephone>
   </DirectoryEntry>
   <DirectoryEntry>
-    <Name>*Mike Allen Cell (Mike Cell)</Name>
+    <Name>*Mike Allen Cell</Name>
     <Telephone>530-933-6253</Telephone>
   </DirectoryEntry>
   <DirectoryEntry>
-    <Name>Mike Allen Video (Mike Video)</Name>
+    <Name>Mike Allen Video</Name>
     <Telephone>mike.allen@perdigon-group.com</Telephone>
   </DirectoryEntry>
   <DirectoryEntry>
-    <Name>*Erik Peterson Cell (Erik Cell)</Name>
+    <Name>*Erik Peterson Cell</Name>
     <Telephone>801-903-3033</Telephone>
   </DirectoryEntry>
   <DirectoryEntry>
-    <Name>Luke Allen (Luke A Cell)</Name>
+    <Name>Luke Allen</Name>
     <Telephone>916-295-8312</Telephone>
   </DirectoryEntry>
   <DirectoryEntry>
-    <Name>*Mike PMR (Join from Device)</Name>
+    <Name>*Mike PMR</Name>
     <Telephone>mike.allen.perdigon@webex.com</Telephone>
   </DirectoryEntry>
   <DirectoryEntry>
-    <Name>*Erik PMR (Join from Device)</Name>
+    <Name>*Erik PMR</Name>
     <Telephone>erik.perdigon@webex.com</Telephone>
   </DirectoryEntry>
   <DirectoryEntry>
-    <Name>Cisco TAC (Also open online: here)</Name>
+    <Name>Cisco TAC</Name>
     <Telephone>1-800-553-2447</Telephone>
   </DirectoryEntry>
   <DirectoryEntry>
@@ -43,39 +43,39 @@
     <Telephone>1-844-613-6108</Telephone>
   </DirectoryEntry>
   <DirectoryEntry>
-    <Name>Mike Allen DialPad (DialPad DID)</Name>
+    <Name>Mike Allen DialPad</Name>
     <Telephone>(916) 312-3122</Telephone>
   </DirectoryEntry>
   <DirectoryEntry>
-    <Name>Andie Peterson (Cell)</Name>
+    <Name>Andie Peterson</Name>
     <Telephone>801-473-6696</Telephone>
   </DirectoryEntry>
   <DirectoryEntry>
-    <Name>Adam Burke (VP of Sales)</Name>
+    <Name>Adam Burke</Name>
     <Telephone>916-609-8049</Telephone>
   </DirectoryEntry>
   <DirectoryEntry>
-    <Name>Dave Noel (Partner Manager)</Name>
+    <Name>Dave Noel</Name>
     <Telephone>916-634-7687</Telephone>
   </DirectoryEntry>
   <DirectoryEntry>
-    <Name>Ashley Durham (SMB Sales Rep)</Name>
+    <Name>Ashley Durham</Name>
     <Telephone>(919) 874-3296</Telephone>
   </DirectoryEntry>
   <DirectoryEntry>
-    <Name>*Erik Peterson Perdi Line (Sales Leader)</Name>
+    <Name>*Erik Peterson Perdi Line</Name>
     <Telephone>435-777-7750</Telephone>
   </DirectoryEntry>
   <DirectoryEntry>
-    <Name>Adam Burke  (VP of Sales)</Name>
+    <Name>Adam Burke </Name>
     <Telephone>adam_burke@questsys.com</Telephone>
   </DirectoryEntry>
   <DirectoryEntry>
-    <Name>Dave Noel (Partner Manager)</Name>
+    <Name>Dave Noel</Name>
     <Telephone>David_Noel@questsys.com</Telephone>
   </DirectoryEntry>
   <DirectoryEntry>
-    <Name>Ashley Durham (SMB Sales Rep)</Name>
+    <Name>Ashley Durham</Name>
     <Telephone>adurham1@lenovo.com</Telephone>
   </DirectoryEntry>
 </CiscoIPPhoneDirectory>
