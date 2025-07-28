@@ -3,55 +3,55 @@
     "name": "ZoHo Support",
     "department": "Vendor",
     "number": "888-900-9646",
-    "notes": "Option 2, Option 2"
+    "notes": ""
   },
   {
     "name": "Perdigon Service Dept",
     "department": "Service",
     "number": "435-777-7811",
-    "notes": "Option 1 or ext 7812"
+    "notes": ""
   },
   {
     "name": "*Mike Allen Cell",
     "department": "Sales",
     "number": "530-933-6253",
-    "notes": "Mike Cell"
+    "notes": ""
   },
   {
     "name": "Mike Allen Video",
     "department": "Sales",
     "number": "mike.allen@perdigon-group.com",
-    "notes": "Mike Video"
+    "notes": ""
   },
   {
     "name": "*Erik Peterson Cell",
     "department": "Sales",
     "number": "801-903-3033",
-    "notes": "Erik Cell"
+    "notes": ""
   },
   {
     "name": "Luke Allen",
     "department": "Sales",
     "number": "916-295-8312",
-    "notes": "Luke A Cell"
+    "notes": ""
   },
   {
     "name": "*Mike PMR",
     "department": "Sales",
     "number": "mike.allen.perdigon@webex.com",
-    "notes": "Join from Device"
+    "notes": ""
   },
   {
     "name": "*Erik PMR",
     "department": "Sales",
     "number": "erik.perdigon@webex.com",
-    "notes": "Join from Device"
+    "notes": ""
   },
   {
     "name": "Cisco TAC",
     "department": "Support",
     "number": "1-800-553-2447",
-    "notes": "Also open online: here"
+    "notes": ""
   },
   {
     "name": "Webex Partner Help Desk",
@@ -63,54 +63,54 @@
     "name": "Mike Allen DialPad",
     "department": "Testing",
     "number": "(916) 312-3122",
-    "notes": "DialPad DID"
+    "notes": ""
   },
   {
     "name": "Andie Peterson",
     "department": "HR",
     "number": "801-473-6696",
-    "notes": "Cell"
+    "notes": ""
   },
   {
     "name": "Adam Burke",
     "department": "Quest",
     "number": "916-609-8049",
-    "notes": "VP of Sales"
+    "notes": ""
   },
   {
     "name": "Dave Noel",
     "department": "Quest",
     "number": "916-634-7687",
-    "notes": "Partner Manager"
+    "notes": ""
   },
   {
     "name": "Ashley Durham",
     "department": "Lenovo",
     "number": "(919) 874-3296",
-    "notes": "SMB Sales Rep"
+    "notes": ""
   },
   {
     "name": "*Erik Peterson Perdi Line",
     "department": "Sales",
     "number": "435-777-7750",
-    "notes": "Sales Leader"
+    "notes": ""
   },
   {
     "name": "Adam Burke ",
     "department": "Quest",
     "number": "adam_burke@questsys.com",
-    "notes": "VP of Sales"
+    "notes": ""
   },
   {
     "name": "Dave Noel",
     "department": "Quest",
     "number": "David_Noel@questsys.com",
-    "notes": "Partner Manager"
+    "notes": ""
   },
   {
     "name": "Ashley Durham",
     "department": "Lenovo",
     "number": "adurham1@lenovo.com",
-    "notes": "SMB Sales Rep"
+    "notes": ""
   }
 ]
