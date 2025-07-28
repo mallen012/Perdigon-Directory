@@ -34,4 +34,8 @@
     <Name>Erik PMR (Join from Device)</Name>
     <Telephone>erik.perdigon@webex.com</Telephone>
   </DirectoryEntry>
+  <DirectoryEntry>
+    <Name>Cisco TAC</Name>
+    <Telephone>1800-553-2447</Telephone>
+  </DirectoryEntry>
 </CiscoIPPhoneDirectory>
