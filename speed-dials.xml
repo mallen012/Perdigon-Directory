@@ -103,6 +103,13 @@
             <Type>Button</Type>
             <Options>size=2</Options>
           </Widget>
+
+          <Widget>
+            <WidgetId>sd_801-473-6696</WidgetId>
+            <Name>Andie Peterson</Name>
+            <Type>Button</Type>
+            <Options>size=2</Options>
+          </Widget>
       </Row>
       <Options>hideRowNames=1</Options>
     </Page>
