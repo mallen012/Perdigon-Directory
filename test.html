@@ -87,8 +87,8 @@
         var weatherUrl = "https://api.openweathermap.org/data/2.5/weather?zip=" + loc.zip + "&appid=" + OWM_API_KEY + "&units=imperial";
         var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?zip=" + loc.zip + "&appid=" + OWM_API_KEY + "&units=imperial";
         Promise.all([
-          fetch("https://api.allorigins.win/get?url=" + encodeURIComponent(weatherUrl)).then(r=>r.json()).then(d=>JSON.parse(d.contents)),
-          fetch("https://api.allorigins.win/get?url=" + encodeURIComponent(forecastUrl)).then(r=>r.json()).then(d=>JSON.parse(d.contents))
+          fetch("https://corsproxy.io/?" + encodeURIComponent(weatherUrl)).then(r=>r.json()),
+          fetch("https://corsproxy.io/?" + encodeURIComponent(forecastUrl)).then(r=>r.json())
         ]).then(function([weather, forecast]) {
           var fcParts = getForecastDayParts(forecast);
           allData[idx] = { loc: loc, weather: weather, forecast: fcParts };
