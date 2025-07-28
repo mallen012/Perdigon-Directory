@@ -100,5 +100,17 @@
     "department": "Quest",
     "number": "adam_burke@questsys.com",
     "notes": ""
+  },
+  {
+    "name": "Dave Noel",
+    "department": "Quest",
+    "number": "David_Noel@questsys.com",
+    "notes": "David_Noel@questsys.com"
+  },
+  {
+    "name": "Ashley Durham",
+    "department": "Lenovo",
+    "number": "adurham1@lenovo.com",
+    "notes": "adurham1@lenovo.com"
   }
 ]
