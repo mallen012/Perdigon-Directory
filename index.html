@@ -10,8 +10,7 @@
     .banner-logo { height: 40px; margin-right: 18px; filter: drop-shadow(0 2px 6px #0005); background: transparent; border-radius: 8px; }
     .banner-title { font-size:2.1em; font-weight:700; color:#fff; margin-left:18px; letter-spacing:.01em; }
     .banner-weather { display: flex; gap: 24px; align-items: center; font-size: 1.09em; }
-    .banner-weather-item { display: flex; align-items: center; gap: 6px; min-width: 140px; padding: 0 5px; background: rgba(36,36,42,0.12); border-radius: 8px; }
-    .banner-weather-item img { width: 36px; height: 36px; margin-right: 3px; vertical-align: middle; }
+    .banner-weather-item { display: flex; align-items: center; gap: 6px; min-width: 180px; padding: 0 5px; background: rgba(36,36,42,0.12); border-radius: 8px; min-height: 52px;}
     .banner-date { color: #ccd; font-size: 1em; letter-spacing: 0.01em; text-align: center; flex: 1; }
     .main-content { display: flex; gap: 30px; justify-content: center; align-items: flex-start; max-width: 1400px; margin: 28px auto 0 auto; }
     .directory-section { flex: 2 1 0; }
@@ -49,22 +48,8 @@
     </div>
     <div class="banner-date" id="banner-date"></div>
     <div class="banner-weather">
-      <div class="banner-weather-item">
-        <span title="Clear" style="font-size:2em;">??</span><img src="https://openweathermap.org/img/wn/01d@2x.png" style="width:34px;height:34px;vertical-align:middle;filter:drop-shadow(0 1px 2px #0007);" alt="Clear">
-        <div style="margin-left:6px;">
-          <strong>Lincoln, CA</strong><br>
-          71&deg;F &nbsp; <span style="color:#b3b3cf">Clear</span><br>
-          <span style="font-size:0.93em;color:#aaa;">H: 76&deg; / L: 68&deg;</span>
-        </div>
-      </div>
-      <div class="banner-weather-item">
-        <span title="Clear" style="font-size:2em;">??</span><img src="https://openweathermap.org/img/wn/01d@2x.png" style="width:34px;height:34px;vertical-align:middle;filter:drop-shadow(0 1px 2px #0007);" alt="Clear">
-        <div style="margin-left:6px;">
-          <strong>Mapleton, UT</strong><br>
-          69&deg;F &nbsp; <span style="color:#b3b3cf">Clear</span><br>
-          <span style="font-size:0.93em;color:#aaa;">H: 75&deg; / L: 69&deg;</span>
-        </div>
-      </div>
+      <div class="banner-weather-item" id="wx1">Loading...</div>
+      <div class="banner-weather-item" id="wx2">Loading...</div>
     </div>
   </div>
   <script>
@@ -78,6 +63,40 @@
     }
     updateBannerDate();
     setInterval(updateBannerDate, 15000);
+
+    // --- Live Weather (client-side fetch) ---
+    const OWM_API_KEY = '65debdc01963a542cfdad42c57f624ad';
+    const weatherConfigs = [
+      { zip: "95648", city: "Lincoln, CA", elem: "wx1" },
+      { zip: "84664", city: "Mapleton, UT", elem: "wx2" }
+    ];
+    function iconHtml(icon, desc) {
+  var iconMap = {
+    "01d":"??", "01n":"?","02d":"??","02n":"??","03d":"??","03n":"??","04d":"??","04n":"??","09d":"??","09n":"??","10d":"??","10n":"??","11d":"??","11n":"??","13d":"??","13n":"??","50d":"??","50n":"??"
+  };
+  var url = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
+  var emoji = iconMap[icon] ? '<span style="font-size:1.7em;">' + iconMap[icon] + '</span> ' : '';
+  return emoji + '<img src="' + url + '" style="width:30px;height:30px;vertical-align:middle;" alt="' + desc + '">';
+}
+    function updateWeather() {
+      weatherConfigs.forEach(cfg => {
+        fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${cfg.zip}&appid=${OWM_API_KEY}&units=imperial`)
+          .then(r=>r.json())
+          .then(data=>{
+            document.getElementById(cfg.elem).innerHTML =
+              `<div style="display:flex;align-items:center;gap:6px;">
+                ${iconHtml(data.weather[0].icon, data.weather[0].main)}
+                <div>
+                  <strong>${cfg.city}</strong><br>
+                  ${Math.round(data.main.temp)}&deg;F <span style="color:#b3b3cf">${data.weather[0].main}</span><br>
+                  <span style="font-size:.93em;color:#aaa;">H: ${Math.round(data.main.temp_max)}&deg; / L: ${Math.round(data.main.temp_min)}&deg;</span>
+                </div>
+              </div>`;
+          })
+          .catch(_=>document.getElementById(cfg.elem).innerHTML = "Weather unavailable");
+      });
+    }
+    updateWeather();
   </script>
   <div class="main-content">
     <div class="directory-section">
