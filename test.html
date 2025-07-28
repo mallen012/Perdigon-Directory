@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Weather Test</title>
+  <script src="https://cdn.jsdelivr.net/npm/skycons@1.0.0/skycons.js"></script>
+  <style>
+    body { background: #23272e; color: #fff; font-family: Montserrat,Arial,sans-serif; }
+    .weather-section { margin: 24px auto; max-width: 800px; }
+    .weather-row { display: flex; gap: 30px; }
+    .weather-card { background: #222844; border-radius: 14px; padding: 18px 24px; min-width: 220px; text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="weather-section">
+    <div class="weather-row" id="weather-row"></div>
+  </div>
+  <script>
+    const OWM_API_KEY = "65debdc01963a542cfdad42c57f624ad";
+    const LOCS = [
+      { zip: "95648", city: "Lincoln, CA" },
+      { zip: "84664", city: "Mapleton, UT" }
+    ];
+    const skyconMap = {
+      "01d":"CLEAR_DAY", "01n":"CLEAR_NIGHT",
+      "02d":"PARTLY_CLOUDY_DAY", "02n":"PARTLY_CLOUDY_NIGHT",
+      "03d":"CLOUDY", "03n":"CLOUDY",
+      "04d":"CLOUDY", "04n":"CLOUDY",
+      "09d":"RAIN", "09n":"RAIN",
+      "10d":"RAIN", "10n":"RAIN",
+      "11d":"SLEET", "11n":"SLEET",
+      "13d":"SNOW", "13n":"SNOW",
+      "50d":"FOG", "50n":"FOG"
+    };
+    function renderWeather(loc, weather, forecast, idx) {
+      var main = Math.round(weather.main.temp) + "&deg;F";
+      var hi = Math.round(weather.main.temp_max) + "&deg;";
+      var lo = Math.round(weather.main.temp_min) + "&deg;";
+      var desc = weather.weather[0].main;
+      var card = ""
+        + "<div class='weather-card'>"
+        + "<div style='font-weight:700;color:#ffe066;font-size:1.14em;margin-bottom:7px'>" + loc.city + "</div>"
+        + "<canvas id='skc" + idx + "' width=58 height=58 style='display:block;margin:2px auto 10px auto;'></canvas>"
+        + "<div style='font-size:1.55em;margin:5px 0 6px 0;font-weight:700;'>" + main + "</div>"
+        + "<div style='color:#dbeafe;font-size:.98em;margin-bottom:4px;'>" + desc + " &nbsp; H: " + hi + " &nbsp; L: " + lo + "</div>";
+      // 3-day forecast
+      card += "<div style='display:flex;gap:14px;justify-content:center;margin-top:8px'>";
+      for (var i = 0; i < 3; i++) {
+        var fc = forecast[i];
+        var dt = new Date(fc.dt_txt);
+        var day = dt.toLocaleString("en-US", { weekday: "short" });
+        var fchi = Math.round(fc.main.temp_max);
+        var fclo = Math.round(fc.main.temp_min);
+        var fcdesc = fc.weather[0].main;
+        card += ""
+          + "<div style='background:#28304a;border-radius:9px;padding:8px 11px 7px 11px;min-width:70px;text-align:center;'>"
+          + "<div style='color:#ffe066;font-size:.98em;font-weight:600;'>" + day + "</div>"
+          + "<canvas id='skc" + idx + "_fc" + i + "' width=32 height=32 style='display:block;margin:3px auto 7px auto;'></canvas>"
+          + "<div style='font-size:1.08em;font-weight:500;'>" + fcdesc + "</div>"
+          + "<span style='color:#ffd700;font-size:.98em;margin-right:6px;'>" + fchi + "&deg;</span>"
+          + "<span style='color:#8ee7ff;font-size:.98em;'>" + fclo + "&deg;</span>"
+          + "</div>";
+      }
+      card += "</div></div>";
+      return card;
+    }
+    function getForecastDayParts(forecast) {
+      var results = [], addedDays = {};
+      for (var i = 0; i < forecast.list.length; i++) {
+        var dt = new Date(forecast.list[i].dt_txt);
+        if (dt.getHours() === 12) {
+          var day = dt.getDate();
+          if (!addedDays[day]) {
+            results.push(forecast.list[i]);
+            addedDays[day] = true;
+          }
+        }
+        if (results.length === 3) break;
+      }
+      return results;
+    }
+    function updateWeatherAll() {
+      var rowElem = document.getElementById("weather-row");
+      rowElem.innerHTML = "<div style='color:#ccc;font-size:1.1em;'>Loading weather...</div>";
+      var loaded = 0, allData = [];
+      LOCS.forEach(function(loc, idx) {
+        var weatherUrl = "https://api.openweathermap.org/data/2.5/weather?zip=" + loc.zip + "&appid=" + OWM_API_KEY + "&units=imperial";
+        var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?zip=" + loc.zip + "&appid=" + OWM_API_KEY + "&units=imperial";
+        Promise.all([
+          fetch("https://api.allorigins.win/get?url=" + encodeURIComponent(weatherUrl)).then(r=>r.json()).then(d=>JSON.parse(d.contents)),
+          fetch("https://api.allorigins.win/get?url=" + encodeURIComponent(forecastUrl)).then(r=>r.json()).then(d=>JSON.parse(d.contents))
+        ]).then(function([weather, forecast]) {
+          var fcParts = getForecastDayParts(forecast);
+          allData[idx] = { loc: loc, weather: weather, forecast: fcParts };
+          loaded++;
+          if (loaded === LOCS.length) {
+            rowElem.innerHTML = allData.map(function(d, idx) {
+              return renderWeather(d.loc, d.weather, d.forecast, idx);
+            }).join("");
+            setTimeout(function() {
+              var skycons = new Skycons({ "color": "#ffe066" });
+              allData.forEach(function(d, idx) {
+                var mainIcon = skyconMap[d.weather.weather[0].icon] || "PARTLY_CLOUDY_DAY";
+                skycons.add("skc" + idx, Skycons[mainIcon]);
+                d.forecast.forEach(function(fc, i) {
+                  var fcIcon = skyconMap[fc.weather[0].icon] || "PARTLY_CLOUDY_DAY";
+                  skycons.add("skc" + idx + "_fc" + i, Skycons[fcIcon]);
+                });
+              });
+              skycons.play();
+            }, 100);
+          }
+        }).catch(function() {
+          loaded++;
+          if (loaded === LOCS.length) {
+            rowElem.innerHTML = "<div style='color:#f44;font-size:1.15em;'>Weather unavailable</div>";
+          }
+        });
+      });
+    }
+    if (document.readyState === "loading") { document.addEventListener("DOMContentLoaded", updateWeatherAll); } else { updateWeatherAll(); }
+  </script>
+</body>
+</html>
