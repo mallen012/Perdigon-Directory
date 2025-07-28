@@ -145,6 +145,16 @@
             <Options>size=2</Options>
           </Widget>
       </Row>
+<Row>
+        <Name>Row</Name>
+
+          <Widget>
+            <WidgetId>sd_adam_burke.questsys.com</WidgetId>
+            <Name>Adam Burke </Name>
+            <Type>Button</Type>
+            <Options>size=2</Options>
+          </Widget>
+      </Row>
       <Options>hideRowNames=1</Options>
     </Page>
   </Panel>
