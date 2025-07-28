@@ -94,5 +94,11 @@
     "department": "Sales",
     "number": "435-777-7750 / erik@perdi.net",
     "notes": "Sales Leader"
+  },
+  {
+    "name": "Adam Burke ",
+    "department": "Quest",
+    "number": "adam_burke@questsys.com",
+    "notes": ""
   }
 ]
