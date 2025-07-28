@@ -1,120 +1,4 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Perdigon Directory</title>
-  <style>
-    body { font-family: Montserrat, Arial, sans-serif; background: #23272e; color: #f3f3fa; margin: 0; }
-    .top-banner { display: flex; align-items: center; justify-content: space-between; background: #181a1f; padding: 8px 24px 8px 16px; min-height: 64px; }
-    .banner-logo { height: 40px; margin-right: 18px; filter: drop-shadow(0 2px 6px #0005); background: transparent; border-radius: 8px; }
-    .banner-title { font-size:2.1em; font-weight:700; color:#fff; margin-left:18px; letter-spacing:.01em; }
-    .banner-weather { display: flex; gap: 24px; align-items: center; font-size: 1.09em; }
-    .banner-weather-item { display: flex; align-items: center; gap: 6px; min-width: 180px; padding: 0 5px; background: rgba(36,36,42,0.12); border-radius: 8px; min-height: 52px;}
-    .banner-date { color: #ccd; font-size: 1em; letter-spacing: 0.01em; text-align: center; flex: 1; }
-    .main-content { display: flex; gap: 30px; justify-content: center; align-items: flex-start; max-width: 1400px; margin: 28px auto 0 auto; }
-    .directory-section { flex: 2 1 0; }
-    .agenda-section { flex: 1 1 0; min-width: 340px; max-width: 480px; }
-    table { border-collapse: collapse; width: 100%; background: #292e36; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 16px #1115; }
-    th, td { padding: 12px 8px; border: 1px solid #444c; text-align: left; }
-    th { font-weight: 700; background: #222844; color: #fff; font-size: 1.05em; letter-spacing: 0.02em; }
-    td:last-child, th:last-child { width: 33%; min-width: 200px; }
-    .dept-header-row td { background: linear-gradient(90deg, #31418f 80%, #222844 120%); color: #fff; font-size: 1.12em; font-weight: 700; letter-spacing: 0.03em; text-align: left; padding: 22px 14px 10px 14px; border-top: 3px solid #4f46e5; border-bottom: 2px solid #3c3c60; }
-    tr.dept-space td { border: none !important; height: 6px; background: transparent; padding: 0; }
-    a, a:visited { color: #4f46e5; text-decoration: underline; }
-    .footer { text-align: center; font-size: small; color: #888; margin-top: 32px; padding-bottom: 24px; }
-    /* Agenda styles */
-    .agenda-widget { background: #292e36; border-radius: 12px; margin: 0 0 24px 0; max-width: 460px; box-shadow: 0 2px 10px #0002; }
-    .agenda-day { background: #23272e; color: #ffd900; padding: 8px 14px; cursor: pointer; font-size: 1.09em; border-bottom: 1px solid #323650; }
-    .agenda-list { padding: 6px 14px 8px 18px; }
-    .agenda-event { display: flex; align-items: center; gap: 8px; padding: 4px 0 6px 0; }
-    .agenda-time { font-weight: bold; color: #4f46e5; width: 72px; }
-    .agenda-title { flex: 1 1 auto; }
-    .agenda-join { margin-left: 12px; background: #ffe066; color: #181a1f; padding: 6px 18px; border-radius: 6px; text-decoration: none; font-size: .99em; font-weight: 700; border:none;}
-    .agenda-join:hover { background: #ffd000; color:#000;}
-    .agenda-empty { color: #aaa; padding: 10px 0 12px 0; }
-    @media (max-width: 1000px) {
-      .main-content { flex-direction: column; align-items: stretch; gap: 0; }
-      .agenda-section { max-width: 100%; min-width: unset; margin-top: 28px; }
-      .banner-title { font-size:1.2em; margin-left:10px; }
-    }
-  </style>
-</head>
-<body>
-  <div class="top-banner">
-    <div style="display: flex; align-items: center;">
-      <img class="banner-logo" src="https://mallen012.github.io/Perdigon-Directory/Blue%20Logo.png" alt="Perdigon Logo" onerror="this.style.display='none';">
-      <span class="banner-title">Perdigon Directory</span>
-    </div>
-    <div class="banner-date" id="banner-date"></div>
-    <div class="banner-weather">
-      <div class="banner-weather-item" id="wx1">Loading...</div>
-      <div class="banner-weather-item" id="wx2">Loading...</div>
-    </div>
-  </div>
-  <script>
-    function updateBannerDate() {
-      var now = new Date();
-      var dateStr = now.toLocaleString('en-US', {
-        weekday: 'short', month: 'short', day: '2-digit', year: 'numeric',
-        hour: '2-digit', minute: '2-digit'
-      });
-      document.getElementById('banner-date').textContent = dateStr;
-    }
-    updateBannerDate();
-    setInterval(updateBannerDate, 15000);
-
-    // --- Live Weather (client-side fetch) ---
-    const OWM_API_KEY = '65debdc01963a542cfdad42c57f624ad';
-    const weatherConfigs = [
-      { zip: "95648", city: "Lincoln, CA", elem: "wx1" },
-      { zip: "84664", city: "Mapleton, UT", elem: "wx2" }
-    ];
-    function iconHtml(icon, desc) {
-  var iconMap = {
-    "01d":"??", "01n":"?","02d":"??","02n":"??","03d":"??","03n":"??","04d":"??","04n":"??","09d":"??","09n":"??","10d":"??","10n":"??","11d":"??","11n":"??","13d":"??","13n":"??","50d":"??","50n":"??"
-  };
-  var url = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
-  var emoji = iconMap[icon] ? '<span style="font-size:1.7em;">' + iconMap[icon] + '</span> ' : '';
-  return emoji + '<img src="' + url + '" style="width:30px;height:30px;vertical-align:middle;" alt="' + desc + '">';
-}
-    function updateWeather() {
-      weatherConfigs.forEach(cfg => {
-        fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${cfg.zip}&appid=${OWM_API_KEY}&units=imperial`)
-          .then(r=>r.json())
-          .then(data=>{
-            document.getElementById(cfg.elem).innerHTML =
-              `<div style="display:flex;align-items:center;gap:6px;">
-                ${iconHtml(data.weather[0].icon, data.weather[0].main)}
-                <div>
-                  <strong>${cfg.city}</strong><br>
-                  ${Math.round(data.main.temp)}&deg;F <span style="color:#b3b3cf">${data.weather[0].main}</span><br>
-                  <span style="font-size:.93em;color:#aaa;">H: ${Math.round(data.main.temp_max)}&deg; / L: ${Math.round(data.main.temp_min)}&deg;</span>
-                </div>
-              </div>`;
-          })
-          .catch(_=>document.getElementById(cfg.elem).innerHTML = "Weather unavailable");
-      });
-    }
-    updateWeather();
-  </script>
-  <div class="main-content">
-    <div class="directory-section">
-      <table>
-        <tr>
-          <th>Name</th>
-          <th>Department</th>
-          <th>Number</th>
-          <th>Notes</th>
-        </tr>
-<tr class="dept-header-row"><td colspan="4">Sales</td></tr><tr><td>*Erik Peterson Cell</td><td>Sales</td><td><a href="tel:801-903-3033">801-903-3033</a></td><td>Erik Cell</td></tr><tr><td>*Erik PMR</td><td>Sales</td><td><a href="tel:erik.perdigon@webex.com">erik.perdigon@webex.com</a></td><td>Join from Device</td></tr><tr><td>*Mike Allen Cell</td><td>Sales</td><td><a href="tel:530-933-6253">530-933-6253</a></td><td>Mike Cell</td></tr><tr><td>*Mike PMR</td><td>Sales</td><td><a href="tel:mike.allen.perdigon@webex.com">mike.allen.perdigon@webex.com</a></td><td>Join from Device</td></tr><tr><td>Luke Allen</td><td>Sales</td><td><a href="tel:916-295-8312">916-295-8312</a></td><td>Luke A Cell</td></tr><tr><td>Mike Allen Video</td><td>Sales</td><td><a href="tel:mike.allen@perdigon-group.com">mike.allen@perdigon-group.com</a></td><td>Mike Video</td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr class="dept-header-row"><td colspan="4">Service</td></tr><tr><td>Perdigon Service Dept</td><td>Service</td><td><a href="tel:435-777-7811">435-777-7811</a></td><td>Option 1 or ext 7812</td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr class="dept-header-row"><td colspan="4">Support</td></tr><tr><td>Cisco TAC</td><td>Support</td><td><a href="tel:1800-553-2447">1800-553-2447</a></td><td>Also open online: here</td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr class="dept-header-row"><td colspan="4">Vendor</td></tr><tr><td>ZoHo Support</td><td>Vendor</td><td><a href="tel:888-900-9646">888-900-9646</a></td><td>Option 2, Option 2</td></tr>
-      </table>
-      <div class="footer">
-        Generated by Perdigon | &copy; Mike Allen
-      </div>
-    </div>
-    <div class="agenda-section">
-      
+<!DOCTYPE html><html><head>  <meta charset="UTF-8">  <title>Perdigon Directory</title>  <style>    body { font-family: Montserrat, Arial, sans-serif; background: #23272e; color: #f3f3fa; margin: 0; }    .top-banner { display: flex; align-items: center; justify-content: space-between; background: #181a1f; padding: 8px 24px 8px 16px; min-height: 64px; }    .banner-logo { height: 40px; margin-right: 18px; filter: drop-shadow(0 2px 6px #0005); background: transparent; border-radius: 8px; }    .banner-title { font-size:2.1em; font-weight:700; color:#fff; margin-left:18px; letter-spacing:.01em; }    .banner-weather { display: flex; gap: 24px; align-items: center; font-size: 1.09em; }    .banner-weather-item { display: flex; align-items: center; gap: 6px; min-width: 180px; padding: 0 5px; background: rgba(36,36,42,0.12); border-radius: 8px; min-height: 52px;}    .banner-date { color: #ccd; font-size: 1em; letter-spacing: 0.01em; text-align: center; flex: 1; }    .main-content { display: flex; gap: 30px; justify-content: center; align-items: flex-start; max-width: 1400px; margin: 28px auto 0 auto; }    .directory-section { flex: 2 1 0; }    .agenda-section { flex: 1 1 0; min-width: 340px; max-width: 480px; }    table { border-collapse: collapse; width: 100%; background: #292e36; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 16px #1115; }    th, td { padding: 12px 8px; border: 1px solid #444c; text-align: left; }    th { font-weight: 700; background: #222844; color: #fff; font-size: 1.05em; letter-spacing: 0.02em; }    td:last-child, th:last-child { width: 33%; min-width: 200px; }    .dept-header-row td { background: linear-gradient(90deg, #31418f 80%, #222844 120%); color: #fff; font-size: 1.12em; font-weight: 700; letter-spacing: 0.03em; text-align: left; padding: 22px 14px 10px 14px; border-top: 3px solid #4f46e5; border-bottom: 2px solid #3c3c60; }    tr.dept-space td { border: none !important; height: 6px; background: transparent; padding: 0; }    a, a:visited { color: #4f46e5; text-decoration: underline; }    .footer { text-align: center; font-size: small; color: #888; margin-top: 32px; padding-bottom: 24px; }    .agenda-widget { background: #292e36; border-radius: 12px; margin: 0 0 24px 0; max-width: 460px; box-shadow: 0 2px 10px #0002; }    .agenda-day { background: #23272e; color: #ffd900; padding: 8px 14px; cursor: pointer; font-size: 1.09em; border-bottom: 1px solid #323650; }    .agenda-list { padding: 6px 14px 8px 18px; }    .agenda-event { display: flex; align-items: center; gap: 8px; padding: 4px 0 6px 0; }    .agenda-time { font-weight: bold; color: #4f46e5; width: 72px; }    .agenda-title { flex: 1 1 auto; }    .agenda-join { margin-left: 12px; background: #ffe066; color: #181a1f; padding: 6px 18px; border-radius: 6px; text-decoration: none; font-size: .99em; font-weight: 700; border:none;}    .agenda-join:hover { background: #ffd000; color:#000;}    .agenda-empty { color: #aaa; padding: 10px 0 12px 0; }    @media (max-width: 1000px) {      .main-content { flex-direction: column; align-items: stretch; gap: 0; }      .agenda-section { max-width: 100%; min-width: unset; margin-top: 28px; }      .banner-title { font-size:1.2em; margin-left:10px; }    }  </style></head><body>  <div class="top-banner">    <div style="display: flex; align-items: center;">      <img class="banner-logo" src="https://mallen012.github.io/Perdigon-Directory/Blue%20Logo.png" alt="Perdigon Logo" onerror="this.style.display='none';">      <span class="banner-title">Perdigon Directory</span>    </div>    <div class="banner-date" id="banner-date"></div>    <div class="banner-weather">      <div class="banner-weather-item" id="wx1">Loading...</div>      <div class="banner-weather-item" id="wx2">Loading...</div>    </div>  </div>  <script>    function updateBannerDate() {      var now = new Date();      var dateStr = now.toLocaleString("en-US", {        weekday: "short", month: "short", day: "2-digit", year: "numeric",        hour: "2-digit", minute: "2-digit"      });      document.getElementById("banner-date").textContent = dateStr;    }    updateBannerDate();    setInterval(updateBannerDate, 15000);    // --- Live Weather (client-side fetch) ---    const OWM_API_KEY = "65debdc01963a542cfdad42c57f624ad";    const weatherConfigs = [      { zip: "95648", city: "Lincoln, CA", elem: "wx1" },      { zip: "84664", city: "Mapleton, UT", elem: "wx2" }    ];    function iconHtml(icon, desc) {      var iconMap = {        "01d":"??", "01n":"?","02d":"??","02n":"??","03d":"??","03n":"??","04d":"??","04n":"??","09d":"??","09n":"??","10d":"??","10n":"??","11d":"??","11n":"??","13d":"??","13n":"??","50d":"??","50n":"??"      };      var url = "https://openweathermap.org/img/wn/" + icon + "@2x.png";      var emoji = iconMap.hasOwnProperty(icon) ? '<span style="font-size:1.7em;">' + iconMap[icon] + '</span> ' : '';      return emoji + '<img src="' + url + '" style="width:30px;height:30px;vertical-align:middle;" alt="' + desc + '">';    }    function updateWeather() {      weatherConfigs.forEach(function(cfg) {        fetch("https://api.openweathermap.org/data/2.5/weather?zip=" + cfg.zip + "&appid=" + OWM_API_KEY + "&units=imperial")          .then(function(r){ return r.json(); })          .then(function(data){            document.getElementById(cfg.elem).innerHTML =              '<div style="display:flex;align-items:center;gap:6px;">' +                iconHtml(data.weather[0].icon, data.weather[0].main) +                '<div><strong>' + cfg.city + '</strong><br>' +                Math.round(data.main.temp) + '&deg;F <span style="color:#b3b3cf">' + data.weather[0].main + '</span><br>' +                '<span style="font-size:.93em;color:#aaa;">H: ' + Math.round(data.main.temp_max) + '&deg; / L: ' + Math.round(data.main.temp_min) + '&deg;</span>' +                '</div></div>';          })          .catch(function(_){document.getElementById(cfg.elem).innerHTML = "Weather unavailable";});      });    }    updateWeather();  </script>  <div class="main-content">    <div class="directory-section">      <table>        <tr>          <th>Name</th>          <th>Department</th>          <th>Number</th>          <th>Notes</th>        </tr><tr class="dept-header-row"><td colspan="4">Sales</td></tr><tr><td>*Erik Peterson Cell</td><td>Sales</td><td><a href="tel:801-903-3033">801-903-3033</a></td><td>Erik Cell</td></tr><tr><td>*Erik PMR</td><td>Sales</td><td><a href="tel:erik.perdigon@webex.com">erik.perdigon@webex.com</a></td><td>Join from Device</td></tr><tr><td>*Mike Allen Cell</td><td>Sales</td><td><a href="tel:530-933-6253">530-933-6253</a></td><td>Mike Cell</td></tr><tr><td>*Mike PMR</td><td>Sales</td><td><a href="tel:mike.allen.perdigon@webex.com">mike.allen.perdigon@webex.com</a></td><td>Join from Device</td></tr><tr><td>Luke Allen</td><td>Sales</td><td><a href="tel:916-295-8312">916-295-8312</a></td><td>Luke A Cell</td></tr><tr><td>Mike Allen Video</td><td>Sales</td><td><a href="tel:mike.allen@perdigon-group.com">mike.allen@perdigon-group.com</a></td><td>Mike Video</td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr class="dept-header-row"><td colspan="4">Service</td></tr><tr><td>Perdigon Service Dept</td><td>Service</td><td><a href="tel:435-777-7811">435-777-7811</a></td><td>Option 1 or ext 7812</td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr class="dept-header-row"><td colspan="4">Support</td></tr><tr><td>Cisco TAC</td><td>Support</td><td><a href="tel:1800-553-2447">1800-553-2447</a></td><td>Also open online: here</td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr class="dept-header-row"><td colspan="4">Vendor</td></tr><tr><td>ZoHo Support</td><td>Vendor</td><td><a href="tel:888-900-9646">888-900-9646</a></td><td>Option 2, Option 2</td></tr>      </table>      <div class="footer">        Generated by Perdigon | &copy; Mike Allen      </div>    </div>    <div class="agenda-section">
 <div class="agenda-widget">
   <div class="agenda-day" onclick="toggleAgenda('today')"><strong>Today</strong></div>
   <div class="agenda-list" id="agenda-today" style="display:none;">
@@ -142,7 +26,6 @@
   }
 </script>
 
-      
   <div class="custom-widget" style="background:#232d39;border-radius:12px;box-shadow:0 2px 8px #0002;padding:18px 16px;margin-top:24px;color:#ffe066;text-align:center;">
     <span style="font-size:1.1em;font-weight:700;letter-spacing:.02em;color:#ffd700;">Quick Links</span>
     <div style="margin-top:12px;">
@@ -152,7 +35,6 @@
     </div>
   </div>
   
-      
   <div class="device-status-widget" style="background:#1b222c;border-radius:12px;padding:16px 16px 14px 16px;margin-top:26px;box-shadow:0 2px 8px #0003;">
     <span style="font-size:1.15em;font-weight:700;letter-spacing:.01em;color:#81e4f7;">Room/Device Status</span>
     <div style="margin-top:10px;display:flex;flex-direction:column;gap:8px;">
@@ -170,8 +52,4 @@
       </div>
     </div>
   </div>
-  
-    </div>
-  </div>
-</body>
-</html>
+      </div>  </div></body></html>
