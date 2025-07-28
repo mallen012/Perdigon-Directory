@@ -111,6 +111,16 @@
             <Options>size=2</Options>
           </Widget>
       </Row>
+<Row>
+        <Name>Row</Name>
+
+          <Widget>
+            <WidgetId>sd_916-609-8049</WidgetId>
+            <Name>Adam Burke</Name>
+            <Type>Button</Type>
+            <Options>size=2</Options>
+          </Widget>
+      </Row>
       <Options>hideRowNames=1</Options>
     </Page>
   </Panel>
