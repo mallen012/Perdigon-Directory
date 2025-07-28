@@ -94,6 +94,16 @@
             <Options>size=2</Options>
           </Widget>
       </Row>
+<Row>
+        <Name>Row</Name>
+
+          <Widget>
+            <WidgetId>sd_916312-3122</WidgetId>
+            <Name>Mike Allen DialPad</Name>
+            <Type>Button</Type>
+            <Options>size=2</Options>
+          </Widget>
+      </Row>
       <Options>hideRowNames=1</Options>
     </Page>
   </Panel>
