@@ -70,4 +70,12 @@
     <Name>Adam Burke </Name>
     <Telephone>adam_burke@questsys.com</Telephone>
   </DirectoryEntry>
+  <DirectoryEntry>
+    <Name>Dave Noel (David_Noel@questsys.com)</Name>
+    <Telephone>David_Noel@questsys.com</Telephone>
+  </DirectoryEntry>
+  <DirectoryEntry>
+    <Name>Ashley Durham (adurham1@lenovo.com)</Name>
+    <Telephone>adurham1@lenovo.com</Telephone>
+  </DirectoryEntry>
 </CiscoIPPhoneDirectory>
