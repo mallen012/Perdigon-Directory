@@ -59,10 +59,6 @@
     <Telephone>916-634-7687</Telephone>
   </DirectoryEntry>
   <DirectoryEntry>
-    <Name>Ashley Durham</Name>
-    <Telephone>(919) 874-3296</Telephone>
-  </DirectoryEntry>
-  <DirectoryEntry>
     <Name>*Erik Peterson Perdi Line</Name>
     <Telephone>435-777-7750</Telephone>
   </DirectoryEntry>
@@ -76,6 +72,6 @@
   </DirectoryEntry>
   <DirectoryEntry>
     <Name>Ashley Durham (adurham1@lenovo.com)</Name>
-    <Telephone>adurham1@lenovo.com</Telephone>
+    <Telephone>(919) 874-3296</Telephone>
   </DirectoryEntry>
 </CiscoIPPhoneDirectory>
