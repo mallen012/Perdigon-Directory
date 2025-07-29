@@ -633,8 +633,7 @@
 
   function filterTable() {
     const term = document.getElementById('search').value.toLowerCase();
-    const rows = document.querySelectorAll("#directory-table tr:not(:first-child)");
-    rows.forEach(row => {
+    document.querySelectorAll("#directory-table tr:not(:first-child)").forEach(row => {
       row.style.display = row.textContent.toLowerCase().includes(term) ? '' : 'none';
     });
   }
@@ -651,7 +650,9 @@
         document.getElementById('agenda-'+day).innerHTML = '';
       });
       data.items.forEach(ev=>{
-        const day = new Date(ev.start.dateTime||ev.start.date).getDate()===new Date().getDate()?'today':'tomorrow';
+        const eventDay = new Date(ev.start.dateTime||ev.start.date).getDate();
+        const today = new Date().getDate();
+        const day = (eventDay===today) ? 'today' : 'tomorrow';
         document.getElementById('agenda-'+day).innerHTML+=`
           <div>${ev.summary||'No Title'}<br><small>${new Date(ev.start.dateTime).toLocaleTimeString()}</small></div>`;
       });
@@ -662,14 +663,9 @@
     const el = document.getElementById('agenda-'+day);
     el.style.display = el.style.display==='none'?'block':'none';
   }
-  fetchCalendar();
 
-  
-  document.querySelectorAll('td').forEach(td=>{
-    if(td.textContent.trim()==='Mike Allen'){
-      td.innerHTML = '<a href="mailto:mike.allen@perdigon-group.com"><img class="envelope-icon" src="https://mallen012.github.io/Perdigon-Directory/animated/envelope.svg"> Mike Allen</a>';
-    }
-  });
+  document.addEventListener('DOMContentLoaded', fetchCalendar);
 </script>
+
 </body>
 </html>
