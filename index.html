@@ -333,13 +333,14 @@
             var fclo = Math.round(fc.main.temp_min);
             var fcdesc = fc.weather[0].main;
             var fcicon = fc.weather[0].icon;
+            // FIXED REGEX:
             return '<div class="weather-bar-fc">'
               + '<div class="weather-bar-fc-day">' + day + '</div>'
-              + '<img src="animated/' + (iconSvg(fcicon).match(/animated/([^.]+).svg/)||["","cloudy"])[1] + '.svg" width="21" height="21">'
+              + '<img src="animated/' + (iconSvg(fcicon).match(/animated\/([^.]+)\.svg/)||["","cloudy"])[1] + '.svg" width="21" height="21">'
               + '<div class="weather-bar-fc-desc">' + fcdesc + '</div>'
               + '<span class="weather-bar-hi">' + fchi + '&deg;</span>'
               + '<span class="weather-bar-lo">' + fclo + '&deg;</span>'
-            + '</div>';
+              + '</div>';
           }).join("") +
           '</div>';
       }
