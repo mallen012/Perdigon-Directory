@@ -106,5 +106,11 @@
     "department": "Vonage",
     "number": "480-289-7513",
     "notes": "nathan.schexnayder@vonage.com"
+  },
+  {
+    "name": "Jason Rothrock",
+    "department": "Dialpad",
+    "number": "(303) 385-8052",
+    "notes": ""
   }
 ]
