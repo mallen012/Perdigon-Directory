@@ -112,5 +112,11 @@
     "department": "Dialpad",
     "number": "(303) 385-8052",
     "notes": "jason.rothrock@dialpad.com"
+  },
+  {
+    "name": "Jessy Kubal",
+    "department": "Baker Tilly",
+    "number": "(408) 558-7512",
+    "notes": "Jessy.Kubal@bakertilly.com"
   }
 ]
