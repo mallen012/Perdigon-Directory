@@ -171,6 +171,13 @@
             <Type>Button</Type>
             <Options>size=2</Options>
           </Widget>
+
+          <Widget>
+            <WidgetId>sd_408558-7512</WidgetId>
+            <Name>Jessy Kubal</Name>
+            <Type>Button</Type>
+            <Options>size=2</Options>
+          </Widget>
       </Row>
       <Options>hideRowNames=1</Options>
     </Page>
