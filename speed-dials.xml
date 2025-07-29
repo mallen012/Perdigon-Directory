@@ -132,21 +132,11 @@
         <Name>Row</Name>
 
           <Widget>
-            <WidgetId>sd_919874-3296</WidgetId>
-            <Name>Ashley Durham</Name>
-            <Type>Button</Type>
-            <Options>size=2</Options>
-          </Widget>
-
-          <Widget>
             <WidgetId>sd_435-777-7750</WidgetId>
             <Name>*Erik Peterson Perdi Line</Name>
             <Type>Button</Type>
             <Options>size=2</Options>
           </Widget>
-      </Row>
-<Row>
-        <Name>Row</Name>
 
           <Widget>
             <WidgetId>sd_adam_burke.questsys.com</WidgetId>
@@ -154,6 +144,9 @@
             <Type>Button</Type>
             <Options>size=2</Options>
           </Widget>
+      </Row>
+<Row>
+        <Name>Row</Name>
 
           <Widget>
             <WidgetId>sd_David_Noel.questsys.com</WidgetId>
@@ -161,12 +154,9 @@
             <Type>Button</Type>
             <Options>size=2</Options>
           </Widget>
-      </Row>
-<Row>
-        <Name>Row</Name>
 
           <Widget>
-            <WidgetId>sd_adurham1.lenovo.com</WidgetId>
+            <WidgetId>sd_919874-3296</WidgetId>
             <Name>Ashley Durham</Name>
             <Type>Button</Type>
             <Options>size=2</Options>
