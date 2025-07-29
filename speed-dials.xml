@@ -128,6 +128,23 @@
             <Options>size=2</Options>
           </Widget>
       </Row>
+<Row>
+        <Name>Row</Name>
+
+          <Widget>
+            <WidgetId>sd_916-634-7687</WidgetId>
+            <Name>Dave Noel</Name>
+            <Type>Button</Type>
+            <Options>size=2</Options>
+          </Widget>
+
+          <Widget>
+            <WidgetId>sd_919874-3296</WidgetId>
+            <Name>Ashley Durham</Name>
+            <Type>Button</Type>
+            <Options>size=2</Options>
+          </Widget>
+      </Row>
       <Options>hideRowNames=1</Options>
     </Page>
   </Panel>
