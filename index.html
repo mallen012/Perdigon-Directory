@@ -633,8 +633,9 @@
 
   function filterTable() {
     const term = document.getElementById('search').value.toLowerCase();
-    document.querySelectorAll("#directory-table tr:not(:first-child)").forEach(row => {
-      row.style.display = row.textContent.toLowerCase().includes(term) ? '' : 'none';
+    document.querySelectorAll("#directory-table tbody tr").forEach(row => {
+      const rowText = row.textContent.toLowerCase();
+      row.style.display = rowText.includes(term) ? '' : 'none';
     });
   }
 
