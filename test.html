@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
-<body>
-  <img src="https://mallen012.github.io/Perdigon-Directory/animated/envelope.svg" width="48">
-  <img src="https://mallen012.github.io/Perdigon-Directory/animated/day-sunny.svg" width="48">
-  <img src="https://mallen012.github.io/Perdigon-Directory/animated/night-clear.svg" width="48">
-  <div id="weather"></div>
-  <script>
-    fetch("https://api.openweathermap.org/data/2.5/weather?zip=95648&appid=65debdc01963a542cfdad42c57f624ad&units=imperial")
-      .then(r=>r.json()).then(data=>{
-        document.getElementById("weather").textContent = JSON.stringify(data);
-      });
-  </script>
+<body style="background:#23272e;color:#fff;font-family:sans-serif">
+  <h2>Weather Icons Test</h2>
+  <img src="animated/day-sunny.svg" width="50"> day-sunny<br>
+  <img src="animated/night-clear.svg" width="50"> night-clear<br>
+  <img src="animated/day-cloudy.svg" width="50"> day-cloudy<br>
+  <img src="animated/night-alt-cloudy.svg" width="50"> night-alt-cloudy<br>
+  <img src="animated/cloudy.svg" width="50"> cloudy<br>
+  <img src="animated/showers.svg" width="50"> showers<br>
+  <img src="animated/rain.svg" width="50"> rain<br>
+  <img src="animated/thunderstorm.svg" width="50"> thunderstorm<br>
+  <img src="animated/snow.svg" width="50"> snow<br>
+  <img src="animated/fog.svg" width="50"> fog<br>
+  <img src="animated/envelope.svg" width="50"> envelope (email icon)<br>
 </body>
 </html>
