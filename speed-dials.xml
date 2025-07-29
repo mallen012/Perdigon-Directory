@@ -154,6 +154,13 @@
             <Type>Button</Type>
             <Options>size=2</Options>
           </Widget>
+
+          <Widget>
+            <WidgetId>sd_480.289.7513</WidgetId>
+            <Name>Nathan Schexnayder</Name>
+            <Type>Button</Type>
+            <Options>size=2</Options>
+          </Widget>
       </Row>
       <Options>hideRowNames=1</Options>
     </Page>
