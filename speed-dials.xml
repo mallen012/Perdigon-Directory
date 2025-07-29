@@ -115,21 +115,11 @@
         <Name>Row</Name>
 
           <Widget>
-            <WidgetId>sd_916-609-8049</WidgetId>
-            <Name>Adam Burke</Name>
-            <Type>Button</Type>
-            <Options>size=2</Options>
-          </Widget>
-
-          <Widget>
             <WidgetId>sd_916-634-7687</WidgetId>
             <Name>Dave Noel</Name>
             <Type>Button</Type>
             <Options>size=2</Options>
           </Widget>
-      </Row>
-<Row>
-        <Name>Row</Name>
 
           <Widget>
             <WidgetId>sd_435-777-7750</WidgetId>
@@ -137,6 +127,9 @@
             <Type>Button</Type>
             <Options>size=2</Options>
           </Widget>
+      </Row>
+<Row>
+        <Name>Row</Name>
 
           <Widget>
             <WidgetId>sd_916-609-8049</WidgetId>
@@ -144,9 +137,6 @@
             <Type>Button</Type>
             <Options>size=2</Options>
           </Widget>
-      </Row>
-<Row>
-        <Name>Row</Name>
 
           <Widget>
             <WidgetId>sd_David_Noel.questsys.com</WidgetId>
@@ -154,6 +144,9 @@
             <Type>Button</Type>
             <Options>size=2</Options>
           </Widget>
+      </Row>
+<Row>
+        <Name>Row</Name>
 
           <Widget>
             <WidgetId>sd_919874-3296</WidgetId>
