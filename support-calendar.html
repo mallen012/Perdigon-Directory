@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Support Calendar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: Montserrat, sans-serif; background: #23272e; color: #f3f3fa; margin: 0; padding: 20px; }
+    .event { padding: 10px; border-bottom: 1px solid #444; }
+    .event-title { font-weight: bold; font-size: 16px; color: #fff; }
+    .event-time { color: #aaa; font-size: 14px; }
+    .agenda-join {
+      background: #22c55e;
+      color: white;
+      padding: 5px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+    .agenda-join:hover { background: #16a34a; }
+  </style>
+</head>
+<body>
+
+<h2>Support Calendar</h2>
+<div id="calendar">Loading calendar...</div>
+
+<script>
+  const calendarId = 'perdigon-group.com_i0gtlp2hrgk3v60lt9s42tdpq8@group.calendar.google.com';
+  const apiKey = 'AIzaSyCk-Bu7VYwEusJP3WToUWx1EKvNcez1Ugc'; // Same as yesterday
+
+  async function fetchEvents() {
+    const now = new Date().toISOString();
+    const url = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiKey}&timeMin=${now}&singleEvents=true&orderBy=startTime&maxResults=10`;
+
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if (!data.items || data.items.length === 0) {
+      document.getElementById('calendar').innerHTML = "<p>No upcoming events.</p>";
+      return;
+    }
+
+    const calendar = document.getElementById('calendar');
+    calendar.innerHTML = "";
+
+    data.items.forEach(event => {
+      const start = new Date(event.start.dateTime || event.start.date).toLocaleString();
+      const title = event.summary || "(No Title)";
+      const location = event.location || "";
+      const desc = event.description || "";
+
+      let joinLink = "";
+      if (desc.includes("webex.com/meet") || desc.includes("webex.com/join")) {
+        const match = desc.match(/https:\/\/[^\s"]*webex\.com[^\s"]*/i);
+        if (match) {
+          joinLink = `<a href="${match[0]}" target="_blank" class="agenda-join">Join Meeting</a>`;
+        }
+      }
+
+      calendar.innerHTML += `
+        <div class="event">
+          <div class="event-title">${title}</div>
+          <div class="event-time">${start} ${joinLink}</div>
+        </div>
+      `;
+    });
+  }
+
+  fetchEvents();
+</script>
+
+</body>
+</html>
