@@ -2,176 +2,117 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <title>Perdigon Directory</title>
   <style>
-    body{font-family:Montserrat,Arial,sans-serif;background:#23272e;color:#f3f3fa;margin:0;}
-    .top-banner{display:flex;align-items:center;justify-content:space-between;background:#181a1f;padding:10px 18px;}
-    .banner-left{display:flex;align-items:center;gap:16px;}
-    .banner-logo{height:40px;border-radius:8px;filter:drop-shadow(0 2px 6px #0005);}
-    .banner-title{font-size:1.6em;font-weight:700;color:#fff;}
-    .banner-date{color:#ccd;font-size:1.04em;margin-left:18px;}
-    .main-content{display:flex;gap:32px;justify-content:center;align-items:flex-start;padding:28px;}
-    .directory-section{flex:2 1 0;min-width:310px;}
-    .agenda-section{flex:1 1 0;min-width:300px;max-width:400px;}
-    .searchbar{text-align:right;margin-bottom:14px;}
-    .searchbar input{font-size:1em;padding:7px 13px;border-radius:7px;border:1px solid #bbb;background:#23272e;color:#fff;}
-    table{width:100%;border-collapse:collapse;background:#292e36;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px #1115;margin-bottom:14px;}
-    th,td{padding:10px 7px;border:1px solid #444c;text-align:left;}
-    th{background:#222844;color:#fff;font-weight:700;}
-    td.number a{color:#99d3ff;font-weight:700;text-decoration:underline;}
-    td.email{text-align:center;}
-    .envelope-icon{width:21px;height:21px;vertical-align:middle;filter:drop-shadow(0 1px 4px #0006);}
-    .dept-header-row td{background:linear-gradient(90deg,#31418f 80%,#222844 120%);color:#fff;font-weight:700;padding:12px;}
-    .dept-space td{border:none!important;height:8px;padding:0;}
-    .contact-row:hover{background:#2e3240;}
-    .section-title{font-size:1.13em;color:#b6caff;font-weight:700;margin:0 0 8px 0;}
-    .agenda-widget{background:#292e36;border-radius:12px;box-shadow:0 2px 10px #0002;padding:10px;margin-bottom:14px;}
-    .agenda-day{background:#23272e;color:#ffd900;padding:8px 14px;cursor:pointer;font-size:1.08em;border-bottom:1px solid #323650;}
-    .agenda-list{padding:6px 14px 8px 14px;}
-    .agenda-event{display:flex;align-items:center;gap:8px;padding:4px 0 6px 0;}
-    .agenda-time{font-weight:bold;color:#47c7ef;width:60px;}
-    .agenda-title{flex:1;}
-    .agenda-join{margin-left:14px;background:#28c66f;color:#fff;padding:6px 18px;border-radius:6px;text-decoration:none;font-weight:700;font-size:.99em;border:none;}
-    .agenda-join:hover{background:#249854;}
-    .agenda-empty{color:#aaa;padding:10px 0;}
-    .footer{text-align:center;color:#888;font-size:small;margin-top:24px;padding-bottom:20px;}
+    body { font-family: Montserrat, Arial, sans-serif; background: #23272e; color: #f3f3fa; margin: 0; }
+    .top-banner { display: flex; align-items: center; justify-content: space-between; background: #181a1f; padding: 8px 24px 8px 16px; min-height: 64px; }
+    .banner-logo { height: 40px; margin-right: 18px; filter: drop-shadow(0 2px 6px #0005); background: transparent; border-radius: 8px; }
+    .banner-weather { display: flex; gap: 24px; align-items: center; font-size: 1.09em; }
+    .banner-weather-item { display: flex; align-items: center; gap: 6px; min-width: 140px; padding: 0 5px; background: rgba(36,36,42,0.12); border-radius: 8px; }
+    .banner-weather-item img { width: 36px; height: 36px; margin-right: 3px; vertical-align: middle; }
+    .banner-date { color: #ccd; font-size: 1em; letter-spacing: 0.01em; text-align: center; flex: 1; }
+    .sms-invite-widget { display: flex; justify-content: flex-end; align-items: center; margin: 18px 34px 14px 0; }
+    table { border-collapse: collapse; width: 100%; max-width: 900px; margin: 24px auto 0 auto; background: #292e36; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 16px #1115; }
+    th, td { padding: 12px 8px; border: 1px solid #444c; text-align: left; }
+    th { font-weight: 700; background: #222844; color: #fff; font-size: 1.05em; letter-spacing: 0.02em; }
+    td:last-child, th:last-child { width: 33%; min-width: 200px; }
+    .dept-header-row td { background: linear-gradient(90deg, #31418f 80%, #222844 120%); color: #fff; font-size: 1.12em; font-weight: 700; letter-spacing: 0.03em; text-align: left; padding: 22px 14px 10px 14px; border-top: 3px solid #4f46e5; border-bottom: 2px solid #3c3c60; }
+    tr.dept-space td { border: none !important; height: 6px; background: transparent; padding: 0; }
+    a, a:visited { color: #4f46e5; text-decoration: underline; }
+    .footer { text-align: center; font-size: small; color: #888; margin-top: 32px; padding-bottom: 24px; }
+    /* SMS Invite styling */
+    #smsForm { max-width:400px; margin:16px auto 14px auto; padding:20px; background:#292e36; border-radius:12px; box-shadow:0 2px 10px #0002; }
+    #smsForm h3 { color:#4f46e5; margin-bottom:10px; }
+    #smsForm label { color:#fff; }
+    #smsForm input[type=tel] { width:100%; margin-bottom:10px; padding:8px; border-radius:6px; border:1px solid #888; font-size:1.1em; }
+    #smsForm button { background:#4f46e5; color:#fff; padding:10px 20px; border:none; border-radius:8px; font-weight:600; font-size:1.1em; }
+    #smsStatus { margin-top:12px; color:#b5d1ff; }
   </style>
 </head>
 <body>
   <div class="top-banner">
-    <div class="banner-left">
-      <img class="banner-logo"
-           src="https://mallen012.github.io/Perdigon-Directory/Blue%20Logo.png"
-           alt="Perdigon Logo"
-           onerror="this.style.display='none'">
-      <span class="banner-title">Perdigon Directory</span>
-      <span class="banner-date" id="banner-date"></span>
-    </div>
-  </div>
-
-  <div class="main-content">
-
-    <div class="directory-section">
-      <div class="searchbar">
-        <input id="directory-search"
-               placeholder="Search directory?"
-               oninput="filterDirectory()">
+    <img class="banner-logo" src="https://mallen012.github.io/Perdigon-Directory/Blue%20Logo.png" alt="Perdigon Logo" onerror="this.style.display='none';">
+    <div class="banner-date" id="banner-date"></div>
+    <div class="banner-weather">
+      <div class="banner-weather-item">
+        <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Weather">
+        <div>
+          <strong>Lincoln, CA</strong><br>
+          86&deg;F &nbsp; <span style="color:#b3b3cf">Clear</span><br>
+          <span style="font-size:0.93em;color:#aaa;">H: 89&deg; / L: 82&deg;</span>
+        </div>
       </div>
-      <table id="directory-table">
-        <tr>
-          <th>Name</th><th>Department</th><th>Number</th><th></th><th>Notes</th>
-        </tr>
-        <tr class="dept-header-row"><td colspan="5">Vendor</td></tr><tr class="contact-row"><td>ZoHo Support</td><td>Vendor</td><td class="number"><a href="tel:888-900-9646">888-900-9646</a></td><td class="email"></td><td>Option 2, Option 2</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Service</td></tr><tr class="contact-row"><td>Perdigon Service Dept</td><td>Service</td><td class="number"><a href="tel:435-777-7811">435-777-7811</a></td><td class="email"><a href="mailto:support@perdigon-group.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Option 1 or ext 7812</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">*Perdi Sales</td></tr><tr class="contact-row"><td>*Mike Allen Cell</td><td>*Perdi Sales</td><td class="number"><a href="tel:530-933-6253">530-933-6253</a></td><td class="email"><a href="mailto:mike@perdi.net"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Mike Cell</td></tr><tr class="contact-row"><td>Mike Allen Video</td><td>*Perdi Sales</td><td class="number"><a href="tel:mike.allen@perdigon-group.com">mike.allen@perdigon-group.com</a></td><td class="email"><a href="mailto:mike.allen@perdigon-group.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Mike Video</td></tr><tr class="contact-row"><td>*Erik Peterson Cell</td><td>*Perdi Sales</td><td class="number"><a href="tel:801-903-3033">801-903-3033</a></td><td class="email"><a href="mailto:erik@perdi.net"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Erik Cell</td></tr><tr class="contact-row"><td>Luke Allen</td><td>*Perdi Sales</td><td class="number"><a href="tel:916-295-8312">916-295-8312</a></td><td class="email"><a href="mailto:luke.allen@perdigon-group.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Luke Allen</td></tr><tr class="contact-row"><td>*Mike PMR</td><td>*Perdi Sales</td><td class="number"><a href="tel:mike.allen.perdigon@webex.com">mike.allen.perdigon@webex.com</a></td><td class="email"></td><td>Join from Device</td></tr><tr class="contact-row"><td>*Erik PMR</td><td>*Perdi Sales</td><td class="number"><a href="tel:erik.perdigon@webex.com">erik.perdigon@webex.com</a></td><td class="email"><a href="mailto:erik@perdigon-group.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Join from Device</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Support</td></tr><tr class="contact-row"><td>Cisco TAC</td><td>Support</td><td class="number"><a href="tel:1-800-553-2447">1-800-553-2447</a></td><td class="email"></td><td>Also open online: here</td></tr><tr class="contact-row"><td>Webex Partner Help Desk</td><td>Support</td><td class="number"><a href="tel:1-844-613-6108">1-844-613-6108</a></td><td class="email"></td><td></td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Testing</td></tr><tr class="contact-row"><td>Mike Allen DialPad</td><td>Testing</td><td class="number"><a href="tel:(916) 312-3122">(916) 312-3122</a></td><td class="email"></td><td>DialPad DID</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">*Perdi HR</td></tr><tr class="contact-row"><td>Andie Peterson</td><td>*Perdi HR</td><td class="number"><a href="tel:801-473-6696">801-473-6696</a></td><td class="email"></td><td>Cell</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">*Perdi Sales</td></tr><tr class="contact-row"><td>*Erik Peterson Perdi Line</td><td>*Perdi Sales</td><td class="number"><a href="tel:435-777-7750">435-777-7750</a></td><td class="email"><a href="mailto:erik@perdi.net"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Sales Leader</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Quest</td></tr><tr class="contact-row"><td>Adam Burke </td><td>Quest</td><td class="number"><a href="tel:916-609-8049">916-609-8049</a></td><td class="email"><a href="mailto:adam_burke@questsys.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>VP of Sales</td></tr><tr class="contact-row"><td>Dave Noel</td><td>Quest</td><td class="number"><a href="tel:916-634-7687">916-634-7687</a></td><td class="email"><a href="mailto:David_Noel@questsys.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Partner Manager</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Lenovo</td></tr><tr class="contact-row"><td>Ashley Durham</td><td>Lenovo</td><td class="number"><a href="tel:(919) 874-3296">(919) 874-3296</a></td><td class="email"><a href="mailto:adurham1@lenovo.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>SMB Sales Rep</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">*Perdi Sales</td></tr><tr class="contact-row"><td>Luke Villareal</td><td>*Perdi Sales</td><td class="number"><a href="tel:435-275-8498">435-275-8498</a></td><td class="email"><a href="mailto:luke.villareal@perdigon-group.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Senior Account Manager</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Bucher-Suter</td></tr><tr class="contact-row"><td>Martin Wuthrich </td><td>Bucher-Suter</td><td class="number"></td><td class="email"><a href="mailto:Martin.Wuethrich@bucher-suter.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>CEO</td></tr><tr class="contact-row"><td>Kenny Barton</td><td>Bucher-Suter</td><td class="number"></td><td class="email"><a href="mailto:Kenny.Barton@bucher-suter.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>VP of Sales</td></tr><tr class="contact-row"><td>Garrich Theisen</td><td>Bucher-Suter</td><td class="number"></td><td class="email"><a href="mailto:Garrich.Theisen@bucher-suter.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>CSM</td></tr><tr class="contact-row"><td>Chris Bourque</td><td>Bucher-Suter</td><td class="number"></td><td class="email"><a href="mailto:Christopher.Bourque@bucher-suter.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>VP of Sales</td></tr><tr class="contact-row"><td>Dave Nichols </td><td>Bucher-Suter</td><td class="number"></td><td class="email"><a href="mailto:David.Nichols@bucher-suter.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Account Executive</td></tr><tr class="contact-row"><td>Dustin Gregoire</td><td>Bucher-Suter</td><td class="number"></td><td class="email"><a href="mailto:Dustin.Gregoire@bucher-suter.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Account Executive</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Vonage</td></tr><tr class="contact-row"><td>Nathan Schexnayder</td><td>Vonage</td><td class="number"><a href="tel:480-289-7513">480-289-7513</a></td><td class="email"><a href="mailto:nathan.schexnayder@vonage.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Regional Channel Manager</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Content Guru</td></tr><tr class="contact-row"><td>Riad Itani</td><td>Content Guru</td><td class="number"></td><td class="email"><a href="mailto:RII@contentguru.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Channel Account Manager</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Dialpad</td></tr><tr class="contact-row"><td>Jason Rothrock</td><td>Dialpad</td><td class="number"><a href="tel:(303) 385-8052">(303) 385-8052</a></td><td class="email"><a href="mailto:jason.rothrock@dialpad.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Regional Partner Manager</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Baker Tilly</td></tr><tr class="contact-row"><td>Kristie Liang</td><td>Baker Tilly</td><td class="number"></td><td class="email"><a href="mailto:Kristie.Liang@bakertilly.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Managed Services ? Accounting and Finance</td></tr><tr class="contact-row"><td>Jessy Kubal</td><td>Baker Tilly</td><td class="number"><a href="tel:(408) 558-7512">(408) 558-7512</a></td><td class="email"><a href="mailto:Jessy.Kubal@bakertilly.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Managing Director</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Intelepeer</td></tr><tr class="contact-row"><td>Vickie McGovern</td><td>Intelepeer</td><td class="number"></td><td class="email"><a href="mailto:vmcgovern@intelepeer.ai "><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>VP of Strategic Partnerships</td></tr><tr class="contact-row"><td>Jim Pallotto</td><td>Intelepeer</td><td class="number"></td><td class="email"><a href="mailto:jpallotto@intelepeer.ai"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Sr. Director of Customer Success</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Cisco</td></tr><tr class="contact-row"><td>Kyle Decker</td><td>Cisco</td><td class="number"></td><td class="email"><a href="mailto:kyldecke@cisco.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Regional Manager</td></tr><tr class="contact-row"><td>Ryan Poulos</td><td>Cisco</td><td class="number"></td><td class="email"><a href="mailto:rpoulos@cisco.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Collab AE</td></tr><tr class="contact-row"><td>Angie Mann</td><td>Cisco</td><td class="number"></td><td class="email"><a href="mailto:angmann@cisco.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Collab AE</td></tr><tr class="contact-row"><td>Austin Estrada</td><td>Cisco</td><td class="number"></td><td class="email"><a href="mailto:auestrad@cisco.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Collab AE</td></tr><tr class="contact-row"><td>Brandon Viamonte</td><td>Cisco</td><td class="number"></td><td class="email"><a href="mailto:bviamont@cisco.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Collab AE</td></tr><tr class="contact-row"><td>Michelle Heiden </td><td>Cisco</td><td class="number"></td><td class="email"><a href="mailto:mheiden@cisco.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Collab AE</td></tr><tr class="contact-row"><td>Mike Woods</td><td>Cisco</td><td class="number"></td><td class="email"><a href="mailto:miwoods2@cisco.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Collab AE</td></tr><tr class="contact-row"><td>Tom Amery</td><td>Cisco</td><td class="number"></td><td class="email"><a href="mailto:tamery@cisco.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Collab AE</td></tr><tr class="contact-row"><td>Sarah Reuter</td><td>Cisco</td><td class="number"></td><td class="email"><a href="mailto:sareuter@cisco.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Regional Manager</td></tr><tr class="contact-row"><td>Stephanie Marcq</td><td>Cisco</td><td class="number"></td><td class="email"><a href="mailto:smarcq@cisco.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Collab AE</td></tr><tr class="contact-row"><td>Ryan Wu</td><td>Cisco</td><td class="number"></td><td class="email"><a href="mailto:ryawu@cisco.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Collab AE</td></tr><tr class="contact-row"><td>Hogler Forrest</td><td>Cisco</td><td class="number"></td><td class="email"><a href="mailto:hoforres@cisco.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Collab AE</td></tr><tr class="contact-row"><td>Aleks Wittemann</td><td>Cisco</td><td class="number"></td><td class="email"><a href="mailto:awittema@cisco.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Collab AE</td></tr><tr class="contact-row"><td>Shannon Rife</td><td>Cisco</td><td class="number"></td><td class="email"><a href="mailto:shmcbrid@cisco.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Regional Manager</td></tr><tr class="contact-row"><td>Dennis Trop</td><td>Cisco</td><td class="number"></td><td class="email"><a href="mailto:dtrop@cisco.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Collab AE</td></tr><tr class="contact-row"><td>Alex Trop</td><td>Cisco</td><td class="number"></td><td class="email"><a href="mailto:atrop@cisco.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Collab AE</td></tr><tr class="contact-row"><td>Eamon Attarzadeh</td><td>Cisco</td><td class="number"></td><td class="email"><a href="mailto:eattarza@cisco.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Territory Account Manager</td></tr><tr class="contact-row"><td>Howard Shannahan </td><td>Cisco</td><td class="number"></td><td class="email"><a href="mailto:hshanaha@cisco.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Regional Manager</td></tr><tr class="contact-row"><td>Corey Freeze</td><td>Cisco</td><td class="number"></td><td class="email"><a href="mailto:cfreeze@cisco.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Partner Account Manager</td></tr><tr class="contact-row"><td>Kendal Oram</td><td>Cisco</td><td class="number"></td><td class="email"><a href="mailto:koram@cisco.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Security AE</td></tr><tr class="contact-row"><td>Julianne Aitken</td><td>Cisco</td><td class="number"></td><td class="email"><a href="mailto:juaitken@cisco.com"><img src="animated/envelope.svg" class="envelope-icon"></a></td><td>Collab AE</td></tr>
-      </table>
-      <div class="footer">Generated by Perdigon | &copy; Mike Allen</div>
+      <div class="banner-weather-item">
+        <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Weather">
+        <div>
+          <strong>Mapleton, UT</strong><br>
+          89&deg;F &nbsp; <span style="color:#b3b3cf">Clear</span><br>
+          <span style="font-size:0.93em;color:#aaa;">H: 89&deg; / L: 89&deg;</span>
+        </div>
+      </div>
     </div>
-
-    <div class="agenda-section">
-      <div class="section-title">Support Calendar</div>
-      <div id="agenda-widget" class="agenda-widget">Loading calendar?</div>
-    </div>
-
   </div>
-
   <script>
-    // clock
+    // Live date/time in banner
     function updateBannerDate() {
-      var n = new Date();
-      document.getElementById('banner-date').textContent =
-        n.toLocaleString('en-US', {
-          weekday:'short', month:'short', day:'2-digit', year:'numeric',
-          hour:'numeric', minute:'2-digit'
-        });
+      var now = new Date();
+      var dateStr = now.toLocaleString('en-US', {
+        weekday: 'short', month: 'short', day: '2-digit', year: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+      });
+      document.getElementById('banner-date').textContent = dateStr;
     }
     updateBannerDate();
     setInterval(updateBannerDate, 15000);
-
-    // search filter
-    function filterDirectory() {
-      var f = document.getElementById('directory-search').value.toLowerCase();
-      document.querySelectorAll('#directory-table tr.contact-row').forEach(function(r) {
-        r.style.display = r.textContent.toLowerCase().indexOf(f) > -1 ? '' : 'none';
-      });
-    }
-
-    // calendar
-    function fetchCalendarAgenda() {
-      var w = document.getElementById('agenda-widget');
-      var now = new Date();
-      var tmin = new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString();
-      var tmax = new Date(now.getFullYear(), now.getMonth(), now.getDate()+2).toISOString();
-      var url = 'https://www.googleapis.com/calendar/v3/calendars/'
-        + encodeURIComponent('support@perdigon-group.com')
-        + '/events?key='
-        + 'AIzaSyDqMNGC5RUnlzSxP3vbD8WKzt_qPfUzab0'
-        + '&singleEvents=true&orderBy=startTime'
-        + '&timeMin=' + encodeURIComponent(tmin)
-        + '&timeMax=' + encodeURIComponent(tmax)
-        + '&maxResults=20';
-
-      fetch(url)
-        .then(function(res) {
-          if (!res.ok) throw new Error('HTTP ' + res.status);
-          return res.json();
-        })
-        .then(function(data) {
-          var agenda = { today:[], tomorrow:[] };
-          var todayStr = tmin.slice(0,10);
-          var tom = new Date(tmin); tom.setDate(tom.getDate()+1);
-          var tomStr = tom.toISOString().slice(0,10);
-
-          (data.items||[]).forEach(function(ev) {
-            var s = ev.start.dateTime||ev.start.date;
-            if (!s) return;
-            var d = s.slice(0,10);
-            var grp = d===todayStr?'today': d===tomStr?'tomorrow':null;
-            if (!grp) return;
-            var time = ev.start.dateTime
-              ? new Date(ev.start.dateTime).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})
-              : '';
-            var join = '';
-            if (ev.description) {
-              var m = ev.description.match(/https?://[^s<]+/);
-              if (m) join = m[0];
-            }
-            agenda[grp].push({ title:ev.summary||'', time:time, join:join });
-          });
-
-          var out = '';
-          ['today','tomorrow'].forEach(function(day) {
-            out += '<div class="agenda-day" onclick="toggleAgenda(\''+day+'\')">'
-                 + '<strong>'+day.charAt(0).toUpperCase()+day.slice(1)+'</strong></div>';
-            out += '<div id="agenda-'+day+'" class="agenda-list" style="display:none;">';
-            if (agenda[day].length) {
-              agenda[day].forEach(function(e) {
-                out += '<div class="agenda-event">'
-                     + '<span class="agenda-time">'+e.time+'</span>'
-                     + '<span class="agenda-title">'+e.title+'</span>';
-                if (e.join) {
-                  out += '<a href="'+e.join+'" target="_blank" class="agenda-join">Join Meeting</a>';
-                }
-                out += '</div>';
-              });
-            } else {
-              out += '<div class="agenda-empty">No events</div>';
-            }
-            out += '</div>';
-          });
-          w.innerHTML = out;
-        })
-        .catch(function(err) {
-          console.error('Calendar error:', err);
-          w.innerHTML = "<div style='color:#f44;'>Calendar unavailable</div>";
-        });
-    }
-
-    function toggleAgenda(day) {
-      var e = document.getElementById('agenda-'+day);
-      if (e) e.style.display = e.style.display==='none' ? 'block' : 'none';
-    }
-
-    document.addEventListener('DOMContentLoaded', fetchCalendarAgenda);
   </script>
+
+  <!-- SMS INVITE WIDGET -->
+  <form id="smsForm">
+    <h3>Invite a Guest to Call</h3>
+    <label for="smsNumber">Mobile Number:</label><br>
+    <input type="tel" id="smsNumber" name="number" required pattern="^\+1\d{10}$" placeholder="+15551234567"><br>
+    <input type="hidden" name="sip" value="mike.allen@perdigon-group.com">
+    <button type="submit">Send SMS Invite</button>
+    <div id="smsStatus"></div>
+  </form>
+  <script>
+    document.getElementById('smsForm').onsubmit = async function(e) {
+      e.preventDefault();
+      const smsStatus = document.getElementById('smsStatus');
+      smsStatus.textContent = "Sending...";
+      try {
+        const res = await fetch('https://script.google.com/macros/s/AKfycbyg2C1DcsnyvQta3Sp6lHZwsU4gykwy6flSW_cz1MY80Kon4bvsk_uW4uZncbe1XKL5yw/exec', {
+          method: "POST",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify({
+            sip: document.querySelector('input[name="sip"]').value,
+            number: document.getElementById('smsNumber').value
+          })
+        });
+        const data = await res.json();
+        if(data.success || data.status == "success" || res.status == 200) {
+          smsStatus.textContent = "Invite sent!";
+        } else if(data.error) {
+          smsStatus.textContent = "Error: " + data.error;
+        } else {
+          smsStatus.textContent = "Request complete: " + JSON.stringify(data);
+        }
+      } catch (err) {
+        smsStatus.textContent = "Error: " + err.message;
+      }
+    };
+  </script>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Department</th>
+      <th>Number</th>
+      <th>Notes</th>
+    </tr>
+<tr class="dept-header-row"><td colspan="4">*Perdi HR</td></tr><tr><td>Andie Peterson</td><td>*Perdi HR</td><td><a href="tel:801-473-6696">801-473-6696</a></td><td></td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr class="dept-header-row"><td colspan="4">*Perdi Sales</td></tr><tr><td>*Erik Peterson Cell</td><td>*Perdi Sales</td><td><a href="tel:801-903-3033">801-903-3033</a></td><td>erik@perdi.net</td></tr><tr><td>*Erik Peterson Perdi Line</td><td>*Perdi Sales</td><td><a href="tel:435-777-7750">435-777-7750</a></td><td>erik@perdi.net</td></tr><tr><td>*Erik PMR</td><td>*Perdi Sales</td><td><a href="tel:erik.perdigon@webex.com">erik.perdigon@webex.com</a></td><td>erik@perdigon-group.com</td></tr><tr><td>*Mike Allen Cell</td><td>*Perdi Sales</td><td><a href="tel:530-933-6253">530-933-6253</a></td><td>mike@perdi.net</td></tr><tr><td>*Mike PMR</td><td>*Perdi Sales</td><td><a href="tel:mike.allen.perdigon@webex.com">mike.allen.perdigon@webex.com</a></td><td></td></tr><tr><td>Luke Allen</td><td>*Perdi Sales</td><td><a href="tel:916-295-8312">916-295-8312</a></td><td>luke.allen@perdigon-group.com</td></tr><tr><td>Luke Villareal</td><td>*Perdi Sales</td><td><a href="tel:435-275-8498">435-275-8498</a></td><td>luke.villareal@perdigon-group.com</td></tr><tr><td>Mike Allen Video</td><td>*Perdi Sales</td><td><a href="tel:mike.allen@perdigon-group.com">mike.allen@perdigon-group.com</a></td><td>mike.allen@perdigon-group.com</td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr class="dept-header-row"><td colspan="4">Baker Tilly</td></tr><tr><td>Jessy Kubal</td><td>Baker Tilly</td><td><a href="tel:(408) 558-7512">(408) 558-7512</a></td><td>Jessy.Kubal@bakertilly.com</td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr class="dept-header-row"><td colspan="4">Dialpad</td></tr><tr><td>Jason Rothrock</td><td>Dialpad</td><td><a href="tel:(303) 385-8052">(303) 385-8052</a></td><td>jason.rothrock@dialpad.com</td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr class="dept-header-row"><td colspan="4">Lenovo</td></tr><tr><td>Ashley Durham</td><td>Lenovo</td><td><a href="tel:(919) 874-3296">(919) 874-3296</a></td><td>adurham1@lenovo.com</td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr class="dept-header-row"><td colspan="4">Quest</td></tr><tr><td>Adam Burke </td><td>Quest</td><td><a href="tel:916-609-8049">916-609-8049</a></td><td>adam_burke@questsys.com</td></tr><tr><td>Dave Noel</td><td>Quest</td><td><a href="tel:916-634-7687">916-634-7687</a></td><td>David_Noel@questsys.com</td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr class="dept-header-row"><td colspan="4">Service</td></tr><tr><td>Perdigon Service Dept</td><td>Service</td><td><a href="tel:435-777-7811">435-777-7811</a></td><td>support@perdigon-group.com</td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr class="dept-header-row"><td colspan="4">Support</td></tr><tr><td>Cisco TAC</td><td>Support</td><td><a href="tel:1-800-553-2447">1-800-553-2447</a></td><td></td></tr><tr><td>Webex Partner Help Desk</td><td>Support</td><td><a href="tel:1-844-613-6108">1-844-613-6108</a></td><td></td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr class="dept-header-row"><td colspan="4">Testing</td></tr><tr><td>Mike Allen DialPad</td><td>Testing</td><td><a href="tel:(916) 312-3122">(916) 312-3122</a></td><td></td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr class="dept-header-row"><td colspan="4">Vendor</td></tr><tr><td>ZoHo Support</td><td>Vendor</td><td><a href="tel:888-900-9646">888-900-9646</a></td><td></td></tr><tr class="dept-space"><td colspan="4"></td></tr><tr class="dept-header-row"><td colspan="4">Vonage</td></tr><tr><td>Nathan Schexnayder</td><td>Vonage</td><td><a href="tel:480-289-7513">480-289-7513</a></td><td>nathan.schexnayder@vonage.com</td></tr></table>
+  <div class="footer">
+    Generated by Perdigon ? &copy; Mike Allen
+  </div>
 </body>
 </html>
