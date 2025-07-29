@@ -6,75 +6,51 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
   <style>
     body { font-family: Montserrat, Arial, sans-serif; background: #23272e; color: #f3f3fa; margin: 0; }
-    .top-banner { display: flex; align-items: flex-end; justify-content: space-between; background: #181a1f; padding: 12px 28px 4px 16px; min-height: 74px; }
-    .banner-logo { height: 44px; margin-right: 20px; background: transparent; border-radius: 8px; }
-    .banner-title { font-size:2.1em; font-weight:700; color:#fff; margin-left:18px; letter-spacing:.01em; }
-    .banner-date { color: #ccd; font-size: 1em; text-align: right; min-width:190px; }
-    .weather-bar { display: flex; gap: 24px; align-items: center; justify-content:center; margin-left:48px;}
-    .weather-bar-city { display: flex; flex-direction:column; align-items:center; min-width:175px; cursor:pointer; }
-    .weather-bar-city:hover { opacity:0.86; }
-    .weather-bar-main { display:flex; align-items:center; gap:8px; font-size:1.15em;}
-    .weather-bar-icon { width:30px;height:30px;vertical-align:middle;}
-    .weather-bar-hi, .weather-bar-lo { font-size:.97em;}
-    .weather-bar-hi { color:#ffd700;margin-left:5px;}
-    .weather-bar-lo { color:#aee0fd;margin-left:3px;}
-    .weather-bar-city-name { font-weight:700; color:#ffe066; margin-bottom:1px;}
-    .weather-forecast-small { display: flex; gap: 14px; margin-top:2px;}
-    .weather-forecast-item { text-align:center; font-size:0.99em;}
+    .top-banner { display: flex; align-items: flex-end; justify-content: space-between; background: #181a1f; padding: 10px 18px 4px 12px; min-height: 72px; }
+    .banner-logo { height: 40px; margin-right: 16px; background: transparent; border-radius: 8px; }
+    .banner-title { font-size:1.7em; font-weight:700; color:#fff; margin-left:8px; letter-spacing:.01em; }
+    .banner-date { color: #ccd; font-size: 1em; text-align: right; min-width:160px; }
+    .weather-bar { display: flex; gap: 32px; align-items: flex-end; }
+    .weather-bar-city { display: flex; flex-direction:column; align-items:center; min-width:122px; cursor:pointer; }
+    .weather-bar-city:hover { opacity:0.89; }
+    .weather-bar-main { display:flex; align-items:center; gap:7px; font-size:1em;}
+    .weather-bar-icon { width:22px;height:22px;vertical-align:middle;}
+    .weather-bar-city-name { font-weight:700; color:#ffe066; margin-bottom:1px;font-size:1.07em;}
+    .weather-forecast-small { display: flex; gap: 7px; margin-top:1px;}
+    .weather-forecast-item { text-align:center; font-size:.85em;}
     .weather-forecast-day { color: #ffe066; font-size: .93em; font-weight:600; }
-    .weather-forecast-temps { margin-top:1px;}
-    .weather-forecast-hi { color: #ffd700; font-size:.96em;margin-right:4px;}
-    .weather-forecast-lo { color: #8ee7ff; font-size:.96em; }
-    .main-content { display: flex; gap: 32px; justify-content: center; align-items: flex-start; max-width: 1400px; margin: 28px auto 0 auto; }
-    .directory-section { flex: 2 1 0; min-width:340px;}
-    .agenda-section { flex: 1 1 0; min-width: 340px; max-width: 480px; }
-    .section-title { font-size:1.21em; font-weight:700; color:#ffe066; margin:24px 0 8px 0;}
-    .searchbar { margin: 16px 0 18px 0; width:100%; }
-    .searchbar input { width: 100%; padding: 9px 14px; border-radius:8px; border:1.5px solid #2b2e40; font-size:1em; outline:none; background:#24273b; color:#ececff;}
+    .weather-forecast-hi { color: #ffd700; font-size:.94em;margin-right:2px;}
+    .weather-forecast-lo { color: #8ee7ff; font-size:.94em;}
+    .main-content { display: flex; gap: 26px; justify-content: center; align-items: flex-start; max-width: 1400px; margin: 18px auto 0 auto; }
+    .directory-section { flex: 2 1 0; min-width:320px;}
+    .agenda-section { flex: 1 1 0; min-width: 300px; max-width: 470px; }
+    .section-title { font-size:1.19em; font-weight:700; color:#ffe066; margin:19px 0 9px 0;}
+    .searchbar { margin: 13px 0 14px 0; width:100%; }
+    .searchbar input { width: 100%; padding: 8px 11px; border-radius:8px; border:1.5px solid #2b2e40; font-size:1em; outline:none; background:#24273b; color:#ececff;}
     table { border-collapse: collapse; width: 100%; background: #292e36; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 16px #1115; }
-    th, td { padding: 12px 8px; border: 1px solid #444c; text-align: left; }
-    th { font-weight: 700; background: #222844; color: #fff; font-size: 1.05em; }
-    td.phone { color:#81caff; font-weight:600; font-size:1.05em; }
+    th, td { padding: 9px 6px; border: 1px solid #444c; text-align: left; }
+    th { font-weight: 700; background: #222844; color: #fff; font-size: 1em; }
+    td.phone { color:#81caff; font-weight:600; font-size:1.02em; }
     td.email { text-align: center; }
-    .email-icon { display:inline-block; width:21px; height:21px; filter: drop-shadow(0 1px 2px #1116);}
-    td:last-child, th:last-child { min-width: 110px; }
-    .dept-header-row td { background: linear-gradient(90deg, #31418f 80%, #222844 120%); color: #fff; font-size: 1.12em; font-weight: 700; letter-spacing: 0.03em; text-align: left; padding: 22px 14px 10px 14px; border-top: 3px solid #4f46e5; border-bottom: 2px solid #3c3c60; }
+    .email-icon { display:inline-block; width:21px; height:21px; }
+    td:last-child, th:last-child { min-width: 90px; }
+    .dept-header-row td { background: linear-gradient(90deg, #31418f 80%, #222844 120%); color: #fff; font-size: 1.1em; font-weight: 700; letter-spacing: 0.03em; text-align: left; padding: 18px 10px 8px 10px; border-top: 3px solid #4f46e5; border-bottom: 2px solid #3c3c60; }
     tr.dept-space td { border: none !important; height: 6px; background: transparent; padding: 0; }
     a, a:visited { color: #4f8fff; text-decoration: underline; }
-    .footer { text-align: center; font-size: small; color: #888; margin-top: 32px; padding-bottom: 24px; }
-    .agenda-widget { background: #292e36; border-radius: 12px; margin: 0 0 24px 0; max-width: 460px; box-shadow: 0 2px 10px #0002; }
-    .agenda-day { background: #23272e; color: #ffd900; padding: 8px 14px; cursor: pointer; font-size: 1.09em; border-bottom: 1px solid #323650; }
-    .agenda-list { padding: 6px 14px 8px 18px; }
-    .agenda-event { display: flex; align-items: center; gap: 8px; padding: 4px 0 6px 0; }
-    .agenda-time { font-weight: bold; color: #28b455; width: 72px; }
+    .footer { text-align: center; font-size: small; color: #888; margin-top: 24px; padding-bottom: 20px; }
+    .agenda-widget { background: #292e36; border-radius: 10px; margin: 0 0 19px 0; max-width: 460px; box-shadow: 0 2px 8px #0002; }
+    .agenda-day { background: #23272e; color: #ffd900; padding: 8px 14px; cursor: pointer; font-size: 1em; border-bottom: 1px solid #323650; }
+    .agenda-list { padding: 5px 11px 7px 12px; }
+    .agenda-event { display: flex; align-items: center; gap: 8px; padding: 3px 0 5px 0; }
+    .agenda-time { font-weight: bold; color: #28b455; width: 63px; }
     .agenda-title { flex: 1 1 auto; }
-    .agenda-join { margin-left: 12px; background: #22b455; color: #fff; padding: 7px 18px; border-radius: 8px; text-decoration: none; font-size: .99em; font-weight: 700; border:none; box-shadow:0 1.5px 6px #28b45544;}
+    .agenda-join { margin-left: 12px; background: #22b455; color: #fff; padding: 6px 14px; border-radius: 8px; text-decoration: none; font-size: .99em; font-weight: 700; border:none;}
     .agenda-join:hover { background: #1ea046; color:#fff;}
-    .agenda-empty { color: #aaa; padding: 10px 0 12px 0; }
-    .custom-widget { background:#232d39;border-radius:12px;box-shadow:0 2px 8px #0002;padding:18px 16px;margin-top:24px;color:#ffe066;text-align:center;}
-    .custom-widget span { font-size:1.1em;font-weight:700;letter-spacing:.02em;color:#ffd700;}
-    .custom-widget a { margin:6px 6px 0 0; display:inline-block;text-decoration:none;font-size:1.07em;padding:8px 18px;border-radius:7px;font-weight:600;}
-    .quick-wx { background:#4f46e5;color:#fff;}
-    .quick-ticket { background:#2fbb71;color:#fff;}
-    .quick-site { background:#e6b400;color:#23272e;}
-    .quick-tac { background:#1185c2;color:#fff;}
-    .quick-helpdesk { background:#19a4e5;color:#fff;}
-    .quick-kb { background:#7e64d4;color:#fff;}
-    .quick-duo { background:#0fa174;color:#fff;}
-    .device-status-widget {background:#1b222c;border-radius:12px;padding:16px 16px 14px 16px;margin-top:26px;box-shadow:0 2px 8px #0003;}
-    .device-status-widget span.title { font-size:1.15em;font-weight:700;letter-spacing:.01em;color:#81e4f7;}
-    .service-dot {display:inline-block;width:15px;height:15px;border-radius:50%;margin-right:8px;vertical-align:middle;}
-    .stat-green {background:#2ecc40;}
-    .stat-yellow {background:#ffd000;}
-    .stat-red {background:#d32f2f;}
-    .stat-blue {background:#00c8fa;}
-    .stat-orange {background:#ff9933;}
-    .status-row {margin:8px 0;}
-    .service-status-link {color:#ffe066;font-weight:700;text-decoration:underline;}
-    @media (max-width: 1000px) {
+    .agenda-empty { color: #aaa; padding: 9px 0 9px 0; }
+    @media (max-width: 950px) {
       .main-content { flex-direction: column; align-items: stretch; gap: 0; }
-      .agenda-section { max-width: 100%; min-width: unset; margin-top: 28px; }
-      .banner-title { font-size:1.2em; margin-left:10px; }
+      .agenda-section { max-width: 100%; min-width: unset; margin-top: 22px; }
+      .banner-title { font-size:1.15em; margin-left:7px; }
       .weather-bar { flex-direction:column;align-items:flex-start;margin-left:0;}
     }
   </style>
@@ -96,40 +72,13 @@
           <th>Name</th>
           <th>Department</th>
           <th>Number</th>
-          <th style="width:38px;text-align:center;"><span title="Email">&#9993;</span></th>
+          <th style="width:34px;text-align:center;"></th>
           <th>Notes</th>
-        </tr><tr class="dept-header-row"><td colspan="5">*Perdi HR</td></tr><tr><td>Andie Peterson</td><td>*Perdi HR</td><td class="phone"><a href="tel:801-473-6696">801-473-6696</a></td><td class="email"></td><td>Cell</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">*Perdi Sales</td></tr><tr><td>*Mike Allen Cell</td><td>*Perdi Sales</td><td class="phone"><a href="tel:530-933-6253">530-933-6253</a></td><td class="email"><a href="mailto:mike@perdi.net" title="Email *Mike Allen Cell"><img src="https://mallen012.github.io/Perdigon-Directory/animated/envelope.svg" class="email-icon" alt="email"></a></td><td>Mike Cell</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Lenovo</td></tr><tr><td>Ashley Durham</td><td>Lenovo</td><td class="phone"><a href="tel:(919) 874-3296">(919) 874-3296</a></td><td class="email"><a href="mailto:adurham1@lenovo.com" title="Email Ashley Durham"><img src="https://mallen012.github.io/Perdigon-Directory/animated/envelope.svg" class="email-icon" alt="email"></a></td><td>SMB Sales Rep</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Quest</td></tr><tr><td>Adam Burke</td><td>Quest</td><td class="phone"><a href="tel:916-609-8049">916-609-8049</a></td><td class="email"></td><td>VP of Sales</td></tr><tr><td>Adam Burke </td><td>Quest</td><td class="phone"><a href="tel:adam_burke@questsys.com">adam_burke@questsys.com</a></td><td class="email"><a href="mailto:adam_burke@questsys.com" title="Email Adam Burke "><img src="https://mallen012.github.io/Perdigon-Directory/animated/envelope.svg" class="email-icon" alt="email"></a></td><td>VP of Sales</td></tr><tr><td>Dave Noel</td><td>Quest</td><td class="phone"><a href="tel:916-634-7687">916-634-7687</a></td><td class="email"></td><td>Partner Manager</td></tr><tr><td>Dave Noel</td><td>Quest</td><td class="phone"><a href="tel:David_Noel@questsys.com">David_Noel@questsys.com</a></td><td class="email"><a href="mailto:David_Noel@questsys.com" title="Email Dave Noel"><img src="https://mallen012.github.io/Perdigon-Directory/animated/envelope.svg" class="email-icon" alt="email"></a></td><td>Partner Manager</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Sales</td></tr><tr><td>*Erik Peterson Cell</td><td>Sales</td><td class="phone"><a href="tel:801-903-3033">801-903-3033</a></td><td class="email"><a href="mailto:erik@perdi.net" title="Email *Erik Peterson Cell"><img src="https://mallen012.github.io/Perdigon-Directory/animated/envelope.svg" class="email-icon" alt="email"></a></td><td>Erik Cell</td></tr><tr><td>*Erik Peterson Perdi Line</td><td>Sales</td><td class="phone"><a href="tel:435-777-7750">435-777-7750</a></td><td class="email"></td><td>Sales Leader</td></tr><tr><td>*Erik PMR</td><td>Sales</td><td class="phone"><a href="tel:erik.perdigon@webex.com">erik.perdigon@webex.com</a></td><td class="email"><a href="mailto:erik@perdigon-group.com" title="Email *Erik PMR"><img src="https://mallen012.github.io/Perdigon-Directory/animated/envelope.svg" class="email-icon" alt="email"></a></td><td>Join from Device</td></tr><tr><td>*Mike PMR</td><td>Sales</td><td class="phone"><a href="tel:mike.allen.perdigon@webex.com">mike.allen.perdigon@webex.com</a></td><td class="email"></td><td>Join from Device</td></tr><tr><td>Luke Allen</td><td>Sales</td><td class="phone"><a href="tel:916-295-8312">916-295-8312</a></td><td class="email"><a href="mailto:luke.allen@perdigon-group.com" title="Email Luke Allen"><img src="https://mallen012.github.io/Perdigon-Directory/animated/envelope.svg" class="email-icon" alt="email"></a></td><td>Luke Allen</td></tr><tr><td>Mike Allen Video</td><td>Sales</td><td class="phone"><a href="tel:mike.allen@perdigon-group.com">mike.allen@perdigon-group.com</a></td><td class="email"><a href="mailto:mike.allen@perdigon-group.com" title="Email Mike Allen Video"><img src="https://mallen012.github.io/Perdigon-Directory/animated/envelope.svg" class="email-icon" alt="email"></a></td><td>Mike Video</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Service</td></tr><tr><td>Perdigon Service Dept</td><td>Service</td><td class="phone"><a href="tel:435-777-7811">435-777-7811</a></td><td class="email"></td><td>Option 1 or ext 7812</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Support</td></tr><tr><td>Cisco TAC</td><td>Support</td><td class="phone"><a href="tel:1-800-553-2447">1-800-553-2447</a></td><td class="email"></td><td>Also open online: here</td></tr><tr><td>Webex Partner Help Desk</td><td>Support</td><td class="phone"><a href="tel:1-844-613-6108">1-844-613-6108</a></td><td class="email"></td><td></td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Testing</td></tr><tr><td>Mike Allen DialPad</td><td>Testing</td><td class="phone"><a href="tel:(916) 312-3122">(916) 312-3122</a></td><td class="email"></td><td>DialPad DID</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Vendor</td></tr><tr><td>ZoHo Support</td><td>Vendor</td><td class="phone"><a href="tel:888-900-9646">888-900-9646</a></td><td class="email"></td><td>Option 2, Option 2</td></tr>
-      </table>
-      <div class="footer">Generated by Perdigon | &copy; Mike Allen</div>
+        </tr><tr class="dept-header-row"><td colspan="5">*Perdi HR</td></tr><tr><td>Andie Peterson</td><td>*Perdi HR</td><td class="phone"><a href="tel:801-473-6696">801-473-6696</a></td><td class="email"></td><td>Cell</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">*Perdi Sales</td></tr><tr><td>*Mike Allen Cell</td><td>*Perdi Sales</td><td class="phone"><a href="tel:530-933-6253">530-933-6253</a></td><td class="email"><a href="mailto:mike@perdi.net" title="Email *Mike Allen Cell"><img src="https://mallen012.github.io/Perdigon-Directory/animated/envelope.svg" class="email-icon" alt="email"></a></td><td>Mike Cell</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Lenovo</td></tr><tr><td>Ashley Durham</td><td>Lenovo</td><td class="phone"><a href="tel:(919) 874-3296">(919) 874-3296</a></td><td class="email"><a href="mailto:adurham1@lenovo.com" title="Email Ashley Durham"><img src="https://mallen012.github.io/Perdigon-Directory/animated/envelope.svg" class="email-icon" alt="email"></a></td><td>SMB Sales Rep</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Quest</td></tr><tr><td>Adam Burke</td><td>Quest</td><td class="phone"><a href="tel:916-609-8049">916-609-8049</a></td><td class="email"></td><td>VP of Sales</td></tr><tr><td>Adam Burke </td><td>Quest</td><td class="phone"><a href="tel:adam_burke@questsys.com">adam_burke@questsys.com</a></td><td class="email"><a href="mailto:adam_burke@questsys.com" title="Email Adam Burke "><img src="https://mallen012.github.io/Perdigon-Directory/animated/envelope.svg" class="email-icon" alt="email"></a></td><td>VP of Sales</td></tr><tr><td>Dave Noel</td><td>Quest</td><td class="phone"><a href="tel:916-634-7687">916-634-7687</a></td><td class="email"></td><td>Partner Manager</td></tr><tr><td>Dave Noel</td><td>Quest</td><td class="phone"><a href="tel:David_Noel@questsys.com">David_Noel@questsys.com</a></td><td class="email"><a href="mailto:David_Noel@questsys.com" title="Email Dave Noel"><img src="https://mallen012.github.io/Perdigon-Directory/animated/envelope.svg" class="email-icon" alt="email"></a></td><td>Partner Manager</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Sales</td></tr><tr><td>*Erik Peterson Cell</td><td>Sales</td><td class="phone"><a href="tel:801-903-3033">801-903-3033</a></td><td class="email"><a href="mailto:erik@perdi.net" title="Email *Erik Peterson Cell"><img src="https://mallen012.github.io/Perdigon-Directory/animated/envelope.svg" class="email-icon" alt="email"></a></td><td>Erik Cell</td></tr><tr><td>*Erik Peterson Perdi Line</td><td>Sales</td><td class="phone"><a href="tel:435-777-7750">435-777-7750</a></td><td class="email"></td><td>Sales Leader</td></tr><tr><td>*Erik PMR</td><td>Sales</td><td class="phone"><a href="tel:erik.perdigon@webex.com">erik.perdigon@webex.com</a></td><td class="email"><a href="mailto:erik@perdigon-group.com" title="Email *Erik PMR"><img src="https://mallen012.github.io/Perdigon-Directory/animated/envelope.svg" class="email-icon" alt="email"></a></td><td>Join from Device</td></tr><tr><td>*Mike PMR</td><td>Sales</td><td class="phone"><a href="tel:mike.allen.perdigon@webex.com">mike.allen.perdigon@webex.com</a></td><td class="email"></td><td>Join from Device</td></tr><tr><td>Luke Allen</td><td>Sales</td><td class="phone"><a href="tel:916-295-8312">916-295-8312</a></td><td class="email"><a href="mailto:luke.allen@perdigon-group.com" title="Email Luke Allen"><img src="https://mallen012.github.io/Perdigon-Directory/animated/envelope.svg" class="email-icon" alt="email"></a></td><td>Luke Allen</td></tr><tr><td>Mike Allen Video</td><td>Sales</td><td class="phone"><a href="tel:mike.allen@perdigon-group.com">mike.allen@perdigon-group.com</a></td><td class="email"><a href="mailto:mike.allen@perdigon-group.com" title="Email Mike Allen Video"><img src="https://mallen012.github.io/Perdigon-Directory/animated/envelope.svg" class="email-icon" alt="email"></a></td><td>Mike Video</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Service</td></tr><tr><td>Perdigon Service Dept</td><td>Service</td><td class="phone"><a href="tel:435-777-7811">435-777-7811</a></td><td class="email"></td><td>Option 1 or ext 7812</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Support</td></tr><tr><td>Cisco TAC</td><td>Support</td><td class="phone"><a href="tel:1-800-553-2447">1-800-553-2447</a></td><td class="email"></td><td>Also open online: here</td></tr><tr><td>Webex Partner Help Desk</td><td>Support</td><td class="phone"><a href="tel:1-844-613-6108">1-844-613-6108</a></td><td class="email"></td><td></td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Testing</td></tr><tr><td>Mike Allen DialPad</td><td>Testing</td><td class="phone"><a href="tel:(916) 312-3122">(916) 312-3122</a></td><td class="email"></td><td>DialPad DID</td></tr><tr class="dept-space"><td colspan="5"></td></tr><tr class="dept-header-row"><td colspan="5">Vendor</td></tr><tr><td>ZoHo Support</td><td>Vendor</td><td class="phone"><a href="tel:888-900-9646">888-900-9646</a></td><td class="email"></td><td>Option 2, Option 2</td></tr></table><div class="footer">Generated by Perdigon | &copy; Mike Allen</div>
     </div>
     <div class="agenda-section">
       <div class="section-title">Support Calendar</div>
       <div class="agenda-widget" id="agenda-widget"></div>
-      <div class="custom-widget">
-        <span>Quick Links</span>
-        <div style="margin-top:12px;">
-          <a href="https://perdigon.webex.com" target="_blank" class="quick-wx">Perdi Webex Site</a>
-          <a href="https://support.perdigon-group.com/" target="_blank" class="quick-ticket">Perdi Submit Ticket</a>
-          <a href="https://perdigon-group.com" target="_blank" class="quick-site">Perdigon Website</a>
-          <a href="https://mycase.cloudapps.cisco.com/start?referring_site=wwcontacts" target="_blank" class="quick-tac">Open TAC Case</a>
-          <a href="https://help.webex.com/en-us/contact" target="_blank" class="quick-helpdesk">Webex HelpDesk</a>
-          <a href="https://help.webex.com/en-us/result?offset=10&tab=support" target="_blank" class="quick-kb">Webex KB</a>
-          <a href="https://perdigon.login.duosecurity.com/central/" target="_blank" class="quick-duo">Perdi Duo Central</a>
-        </div>
-      </div>
-      <div class="device-status-widget" id="cloud-status">
-        <span class="title">Cloud Service Status</span>
-        <div class="status-row"><span class="service-dot stat-green"></span>Webex Calling <span style="color:#31e6fb;font-weight:600;">Operational</span></div>
-        <div class="status-row"><span class="service-dot stat-green"></span>Webex App <span style="color:#31e6fb;font-weight:600;">Operational</span></div>
-        <div class="status-row"><span class="service-dot stat-green"></span>Webex Control Hub <span style="color:#31e6fb;font-weight:600;">Operational</span></div>
-        <div class="status-row"><span class="service-dot stat-green"></span>Webex Meetings <span style="color:#31e6fb;font-weight:600;">Operational</span></div>
-        <div class="status-row"><span class="service-dot stat-green"></span>Webex Contact Center <span style="color:#31e6fb;font-weight:600;">Operational</span></div>
-        <div class="status-row">
-          <span class="service-dot stat-yellow"></span>
-          <a href="https://status.openai.com/" target="_blank" style="color:#ffe066;text-decoration:underline;font-weight:700;">ChatGPT Status</a> <span style="color:#31e6fb;font-weight:600;">Notice</span>
-        </div>
-        <div class="status-row" style="margin-top:10px;"><a href="https://status.webex.com/commercial/status?lang=en_US" class="service-status-link" target="_blank">All Webex Services &rarr;</a></div>
-      </div>
     </div>
   </div>
   <script>
@@ -160,14 +109,9 @@
       });
     });
 
-    // Weather
+    // Weather in Banner (current + 3 day forecast)
     const weatherCities = [{"name":"Lincoln, CA","zip":"95648","wu":"https://www.wunderground.com/weather/us/ca/lincoln/95648"},{"name":"Mapleton, UT","zip":"84664","wu":"https://www.wunderground.com/weather/us/ut/mapleton/84664"}];
     const iconMap = {"01d":"day-sunny.svg","01n":"night-clear.svg","02d":"day-cloudy.svg","02n":"night-alt-cloudy.svg","03d":"cloudy.svg","03n":"cloudy.svg","04d":"cloudy.svg","04n":"cloudy.svg","09d":"showers.svg","09n":"showers.svg","10d":"rain.svg","10n":"rain.svg","11d":"thunderstorm.svg","11n":"thunderstorm.svg","13d":"snow.svg","13n":"snow.svg","50d":"fog.svg","50n":"fog.svg"};
-    function getWUUrl(zip) {
-      if (zip == "95648") return "https://www.wunderground.com/weather/us/ca/lincoln/95648";
-      if (zip == "84664") return "https://www.wunderground.com/weather/us/ut/mapleton/84664";
-      return "#";
-    }
     function renderWeatherBar(city, data, forecast) {
       var main = Math.round(data.main.temp) + "&deg;F";
       var hi = Math.round(data.main.temp_max) + "&deg;";
@@ -183,15 +127,15 @@
         var fcSvg = "https://mallen012.github.io/Perdigon-Directory/animated/" + fcIcon;
         var day = new Date(fc.dt_txt).toLocaleString("en-US", { weekday: "short" });
         fcHtml += '<div class="weather-forecast-item">';
-        fcHtml += '<img src="' + fcSvg + '" alt="" style="width:22px;height:22px;margin-bottom:1.5px;"><div class="weather-forecast-day">' + day + '</div>';
-        fcHtml += '<div class="weather-forecast-temps"><span class="weather-forecast-hi">' + Math.round(fc.main.temp_max) + '&deg;</span>';
-        fcHtml += '<span class="weather-forecast-lo">' + Math.round(fc.main.temp_min) + '&deg;</span></div></div>';
+        fcHtml += '<img src="' + fcSvg + '" alt="" style="width:15px;height:15px;margin-bottom:1px;"><div class="weather-forecast-day">' + day + '</div>';
+        fcHtml += '<span class="weather-forecast-hi">' + Math.round(fc.main.temp_max) + '&deg;</span>';
+        fcHtml += '<span class="weather-forecast-lo">' + Math.round(fc.main.temp_min) + '&deg;</span></div>';
       }
       fcHtml += '</div>';
       return '<div class="weather-bar-city" onclick="window.open('' + city.wu + '','_blank')">' +
         '<div class="weather-bar-city-name">' + city.name + '</div>' +
         '<div class="weather-bar-main"><img src="' + svgUrl + '" class="weather-bar-icon" alt="' + desc + '"><span>' + main + '</span><span>' + desc + '</span></div>' +
-        '<div><span class="weather-bar-hi">H: ' + hi + '</span><span class="weather-bar-lo">L: ' + lo + '</span></div>' +
+        '<div><span style="color:#ffd700;">H: ' + hi + '</span> <span style="color:#aee0fd;">L: ' + lo + '</span></div>' +
         fcHtml +
         '</div>';
     }
@@ -238,7 +182,7 @@
     }
     if (document.readyState === "loading") { document.addEventListener("DOMContentLoaded", updateWeatherBar); } else { updateWeatherBar(); }
 
-    // Google Calendar Agenda (Realtime via API)
+    // Google Calendar Support Agenda Today/Tomorrow
     var GCAL_ID = "support@perdigon-group.com";
     var GCAL_API_KEY = "AIzaSyDqMNGC5RUnlzSxP3vbD8WKzt_qPfUzab0";
     function fetchCalendarAgenda(){
@@ -260,7 +204,6 @@
             if(!group)return;
             var time=(ev.start.dateTime?new Date(ev.start.dateTime).toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit"}):"");
             var join=(ev.description&&ev.description.match(/https://[^s<]+/))?ev.description.match(/https://[^s<]+/)[0]:"";
-            // Fix: Only show Webex join links, clean extra
             if(join.includes("webex.com/meet/") && join.indexOf("Meeting") > 0) join = join.split("Meeting")[0];
             agenda[group].push({title:ev.summary||"",time:time,join:join});
           });
@@ -271,7 +214,7 @@
           widget+='<div class="agenda-list" id="agenda-'+day+'" style="display:none;">';
           if(agenda[day].length){
             widget+=agenda[day].map(function(ev){
-              return '<div class="agenda-event"><span class="agenda-time">'+(ev.time||"")+"</span><span class="agenda-title">"+ev.title+"</span>"+(ev.join?'<a href="'+ev.join+'" target="_blank" class="agenda-join">Join Meeting</a>':"")+"</div>";
+              return '<div class="agenda-event"><span class="agenda-time">'+(ev.time||"")+"</span><span class=\"agenda-title\">"+ev.title+"</span>"+(ev.join?'<a href="'+ev.join+'" target="_blank" class="agenda-join">Join Meeting</a>':"")+"</div>";
             }).join("");
           }else{
             widget+="<div class='agenda-empty'>No events</div>";
