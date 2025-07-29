@@ -84,12 +84,6 @@
     "notes": ""
   },
   {
-    "name": "Ashley Durham",
-    "department": "Lenovo",
-    "number": "(919) 874-3296",
-    "notes": ""
-  },
-  {
     "name": "*Erik Peterson Perdi Line",
     "department": "Sales",
     "number": "435-777-7750",
@@ -110,7 +104,7 @@
   {
     "name": "Ashley Durham",
     "department": "Lenovo",
-    "number": "adurham1@lenovo.com",
+    "number": "(919) 874-3296",
     "notes": "adurham1@lenovo.com"
   }
 ]
