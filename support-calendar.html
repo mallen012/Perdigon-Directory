@@ -2,74 +2,154 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Support Calendar</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <title>Support Calendar Test</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
   <style>
-    body { font-family: Montserrat, sans-serif; background: #23272e; color: #f3f3fa; margin: 0; padding: 20px; }
-    .event { padding: 10px; border-bottom: 1px solid #444; }
-    .event-title { font-weight: bold; font-size: 16px; color: #fff; }
-    .event-time { color: #aaa; font-size: 14px; }
+    body {
+      background: #23272e;
+      font-family: Montserrat, sans-serif;
+      color: #f3f3fa;
+      padding: 20px;
+    }
+    .agenda-widget {
+      background: #292e36;
+      border-radius: 12px;
+      padding: 18px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 2px 10px #0002;
+    }
+    .agenda-section-title {
+      font-size: 1.4em;
+      color: #ffe066;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .agenda-day {
+      background: #23272e;
+      color: #ffd900;
+      padding: 8px 14px;
+      font-size: 1.1em;
+      border-bottom: 1px solid #323650;
+      cursor: pointer;
+    }
+    .agenda-list {
+      padding: 8px 14px 14px 18px;
+    }
+    .agenda-event {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 0;
+    }
+    .agenda-time {
+      font-weight: bold;
+      color: #4f46e5;
+      width: 72px;
+    }
+    .agenda-title {
+      flex-grow: 1;
+    }
     .agenda-join {
-      background: #22c55e;
-      color: white;
-      padding: 5px 12px;
+      margin-left: 8px;
+      background: #25d366;
+      color: #fff;
+      padding: 6px 14px;
       border-radius: 6px;
       text-decoration: none;
-      font-weight: bold;
-      margin-left: 10px;
+      font-weight: 700;
+      font-size: .95em;
     }
-    .agenda-join:hover { background: #16a34a; }
+    .agenda-empty {
+      color: #aaa;
+      padding: 12px 0;
+    }
   </style>
 </head>
 <body>
+  <div class="agenda-widget">
+    <div class="agenda-section-title">Support Calendar (Test)</div>
+    <div class="agenda-day" onclick="toggleAgenda('today')">Today</div>
+    <div class="agenda-list" id="agenda-today" style="display:none;"></div>
+    <div class="agenda-day" onclick="toggleAgenda('tomorrow')">Tomorrow</div>
+    <div class="agenda-list" id="agenda-tomorrow" style="display:none;"></div>
+  </div>
 
-<h2>Support Calendar</h2>
-<div id="calendar">Loading calendar...</div>
+  <script>
+    const GCAL_ID = "support@perdigon-group.com";
+    const API_KEY = "AIzaSyDqMNGC5RUnlzSxP3vbD8WKzt_qPfUzab0";
+    const TIMEZONE = "America/Los_Angeles";
 
-<script>
-  const calendarId = 'support@perdigon-group.com';
-  const apiKey = 'AIzaSyCk-Bu7VYwEusJP3WToUWx1EKvNcez1Ugc'; // Same as yesterday
+    function fetchAndRenderAgenda() {
+      const now = new Date();
+      const end = new Date();
+      end.setDate(now.getDate() + 2);
 
-  async function fetchEvents() {
-    const now = new Date().toISOString();
-    const url = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiKey}&timeMin=${now}&singleEvents=true&orderBy=startTime&maxResults=10`;
+      const isoStringNoMs = dt => dt.toISOString().split(".")[0] + "Z";
+      const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(GCAL_ID)}/events?key=${API_KEY}&singleEvents=true&orderBy=startTime&timeMin=${encodeURIComponent(isoStringNoMs(now))}&timeMax=${encodeURIComponent(isoStringNoMs(end))}&maxResults=20`;
 
-    const res = await fetch(url);
-    const data = await res.json();
+      fetch(url).then(r => r.json()).then(data => {
+        if (!data.items) {
+          document.getElementById("agenda-today").innerHTML = "<div class='agenda-empty'>No events found.</div>";
+          document.getElementById("agenda-tomorrow").innerHTML = "";
+          return;
+        }
 
-    if (!data.items || data.items.length === 0) {
-      document.getElementById('calendar').innerHTML = "<p>No upcoming events.</p>";
-      return;
+        const tz = TIMEZONE;
+        const todayStr = new Date().toLocaleDateString("en-US", { timeZone: tz });
+        const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
+        const tomorrowStr = tomorrow.toLocaleDateString("en-US", { timeZone: tz });
+
+        const todayList = [], tomorrowList = [];
+
+        data.items.forEach(ev => {
+          const evDate = new Date(ev.start.dateTime || ev.start.date);
+          const evDateStr = evDate.toLocaleDateString("en-US", { timeZone: tz });
+          const group = (evDateStr === todayStr) ? "today" : (evDateStr === tomorrowStr) ? "tomorrow" : null;
+          if (!group) return;
+
+          const time = ev.start.dateTime
+            ? new Date(ev.start.dateTime).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", timeZone: tz })
+            : "All Day";
+          let join = "";
+          if (ev.description) {
+            const match = ev.description.match(/https:\/\/[^\s<\n]+/);
+            if (match) join = match[0].trim();
+          }
+          const obj = { time, title: ev.summary, join };
+          (group === "today" ? todayList : tomorrowList).push(obj);
+        });
+
+        renderAgendaList("today", todayList);
+        renderAgendaList("tomorrow", tomorrowList);
+      });
     }
 
-    const calendar = document.getElementById('calendar');
-    calendar.innerHTML = "";
-
-    data.items.forEach(event => {
-      const start = new Date(event.start.dateTime || event.start.date).toLocaleString();
-      const title = event.summary || "(No Title)";
-      const location = event.location || "";
-      const desc = event.description || "";
-
-      let joinLink = "";
-      if (desc.includes("webex.com/meet") || desc.includes("webex.com/join")) {
-        const match = desc.match(/https:\/\/[^\s"]*webex\.com[^\s"]*/i);
-        if (match) {
-          joinLink = `<a href="${match[0]}" target="_blank" class="agenda-join">Join Meeting</a>`;
+    function renderAgendaList(day, list) {
+      const container = document.getElementById(`agenda-${day}`);
+      let html = "";
+      if (!list.length) {
+        html = "<div class='agenda-empty'>No events</div>";
+      } else {
+        for (const item of list) {
+          html += `<div class="agenda-event">
+                     <span class="agenda-time">${item.time}</span>
+                     <span class="agenda-title">${item.title}</span>`;
+          if (item.join) {
+            html += `<a href="${item.join}" class="agenda-join" target="_blank">Join Meeting</a>`;
+          }
+          html += "</div>";
         }
       }
+      container.innerHTML = html;
+    }
 
-      calendar.innerHTML += `
-        <div class="event">
-          <div class="event-title">${title}</div>
-          <div class="event-time">${start} ${joinLink}</div>
-        </div>
-      `;
-    });
-  }
+    function toggleAgenda(day) {
+      const elem = document.getElementById(`agenda-${day}`);
+      elem.style.display = elem.style.display === "none" ? "block" : "none";
+    }
 
-  fetchEvents();
-</script>
-
+    document.addEventListener("DOMContentLoaded", fetchAndRenderAgenda);
+  </script>
 </body>
 </html>
