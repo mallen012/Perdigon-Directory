@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cloud Service Status</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
+  <style>
+    body {
+      background: #1c1f26;
+      color: #f3f3fa;
+      font-family: Montserrat, sans-serif;
+      padding: 40px;
+    }
+    h1 {
+      color: #ffe066;
+      text-align: center;
+    }
+    .device-status-widget {
+      background: #1b222c;
+      border-radius: 12px;
+      padding: 20px;
+      max-width: 520px;
+      margin: 30px auto;
+      box-shadow: 0 2px 8px #0003;
+    }
+    .device-status-widget span {
+      font-size: 1.25em;
+      font-weight: 700;
+      letter-spacing: .01em;
+      color: #81e4f7;
+    }
+    .svc-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1em;
+      margin-top: 12px;
+    }
+    .svc-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: inline-block;
+      background: #888;
+      border: 2px solid #23272e;
+      margin-right: 8px;
+    }
+    .svc-msg {
+      font-size: .97em;
+      color: #eee;
+      margin-left: 10px;
+    }
+    a.status-link {
+      display: block;
+      text-align: center;
+      margin-top: 16px;
+      color: #ffe066;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Cloud Service Status</h1>
+
+  <div class="device-status-widget">
+    <span>Status Dashboard</span>
+    <div id="service-status-section" style="margin-top: 18px; display: flex; flex-direction: column; gap: 10px;">
+      <div class="svc-row" data-svc="calling"><span class="svc-dot" id="svc-calling-dot"></span>Webex Calling <span id="svc-calling-msg" class="svc-msg"></span></div>
+      <div class="svc-row" data-svc="app"><span class="svc-dot" id="svc-app-dot"></span>Webex App <span id="svc-app-msg" class="svc-msg"></span></div>
+      <div class="svc-row" data-svc="controlhub"><span class="svc-dot" id="svc-controlhub-dot"></span>Webex Control Hub <span id="svc-controlhub-msg" class="svc-msg"></span></div>
+      <div class="svc-row" data-svc="meetings"><span class="svc-dot" id="svc-meetings-dot"></span>Webex Meetings <span id="svc-meetings-msg" class="svc-msg"></span></div>
+      <div class="svc-row" data-svc="contactcenter"><span class="svc-dot" id="svc-contactcenter-dot"></span>Webex Contact Center <span id="svc-contactcenter-msg" class="svc-msg"></span></div>
+      <div class="svc-row" data-svc="openai"><span class="svc-dot" id="svc-openai-dot"></span>ChatGPT Status <span id="svc-openai-msg" class="svc-msg"></span></div>
+    </div>
+    <a class="status-link" href="https://status.webex.com/commercial/status?lang=en_US" target="_blank">View Webex Status Page →</a>
+  </div>
+
+  <script>
+    const svcRssFeeds = {
+      calling:        "https://status.webex.com/commercial/rss/services/WEBEXCALLING",
+      app:            "https://status.webex.com/commercial/rss/services/WEBEXAPP",
+      controlhub:     "https://status.webex.com/commercial/rss/services/CONTROLHUB",
+      meetings:       "https://status.webex.com/commercial/rss/services/WEBEXMEETINGS",
+      contactcenter:  "https://status.webex.com/commercial/rss/services/WEBEXCONTACTCENTER",
+      openai:         "https://status.openai.com/history.rss"
+    };
+
+    function setSvcStatus(svc, color, msg) {
+      const dot = document.getElementById(`svc-${svc}-dot`);
+      const label = document.getElementById(`svc-${svc}-msg`);
+      if (dot) dot.style.background = color;
+      if (label) label.textContent = msg;
+    }
+
+    function checkWebexRss(svc) {
+      fetch("https://corsproxy.io/?" + encodeURIComponent(svcRssFeeds[svc]))
+        .then(r => r.text())
+        .then(txt => {
+          const title = (txt.match(/<title><!\[CDATA\[(.*?)\]\]><\/title>/) || [])[1] || "";
+          const incident = title.match(/incident|outage|degrad|disruption|major|partial/i);
+          const maintenance = title.match(/maintenance/i);
+          const bulletin = title.match(/bulletin|notice/i);
+          if (incident)        setSvcStatus(svc, "#e74c3c", "Incident");
+          else if (maintenance || bulletin) setSvcStatus(svc, "#f6c700", "Maintenance");
+          else                 setSvcStatus(svc, "#2ecc40", "Operational");
+        })
+        .catch(() => setSvcStatus(svc, "#888", "Unknown"));
+    }
+
+    function checkOpenAiRss() {
+      fetch("https://corsproxy.io/?" + encodeURIComponent(svcRssFeeds.openai))
+        .then(r => r.text())
+        .then(txt => {
+          const m = txt.match(/<title>([^<]+)<\/title>/g);
+          const latest = m && m[1] ? m[1] : "";
+          if (/degrad|outage|incident|down|major|partial/i.test(latest))
+            setSvcStatus("openai", "#e74c3c", "Incident");
+          else if (/restored|operational|resolved/i.test(latest))
+            setSvcStatus("openai", "#2ecc40", "Operational");
+          else
+            setSvcStatus("openai", "#f6c700", "Notice");
+        })
+        .catch(() => setSvcStatus("openai", "#888", "Unknown"));
+    }
+
+    function updateAllSvcStatus() {
+      ["calling", "app", "controlhub", "meetings", "contactcenter"].forEach(checkWebexRss);
+      checkOpenAiRss();
+    }
+
+    document.addEventListener("DOMContentLoaded", updateAllSvcStatus);
+  </script>
+
+</body>
+</html>
