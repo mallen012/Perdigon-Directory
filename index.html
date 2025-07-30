@@ -514,7 +514,7 @@
       <tr>
         <td>Max Max</td>
         <td>Perdi</td>
-        <td class="number"></td>
+        <td class="number"><a href="tel:3144122112">3144122112</a></td>
         <td><a href="mailto:max@wcallens.com"><img class="envelope-icon" src="https://mallen012.github.io/Perdigon-Directory/animated/envelope.svg"/></a></td>
         <td>Account Executive</td>
       </tr>
@@ -586,46 +586,50 @@
   function fetchAndRenderAgenda() {
     const now = new Date();
     const end = new Date(); end.setDate(now.getDate() + 2);
-
     const isoNoMs = dt => dt.toISOString().split(".")[0] + "Z";
-    const targetUrl = `https:
+
+    const gcalUrl = `https:
     const url = `https:
 
-    fetch(url).then(r => r.json()).then(data => {
-      if (!data.items) {
-        document.getElementById("agenda-today").innerHTML = "<div class='agenda-empty'>No events found.</div>";
-        return;
-      }
-
-      const tz = TIMEZONE;
-      const todayStr = new Date().toLocaleDateString("en-US", { timeZone: tz });
-      const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
-      const tomorrowStr = tomorrow.toLocaleDateString("en-US", { timeZone: tz });
-
-      const todayList = [], tomorrowList = [];
-
-      data.items.forEach(ev => {
-        const evDate = new Date(ev.start.dateTime || ev.start.date);
-        const evDateStr = evDate.toLocaleDateString("en-US", { timeZone: tz });
-        const group = evDateStr === todayStr ? "today" : evDateStr === tomorrowStr ? "tomorrow" : null;
-        if (!group) return;
-
-        const time = ev.start.dateTime ? new Date(ev.start.dateTime).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", timeZone: tz }) : "All Day";
-        let join = "";
-        if (ev.description) {
-          const match = ev.description.match(/https:\/\/[^\s<\n]+/);
-          if (match) join = match[0].trim();
+    fetch(url)
+      .then(r => r.json())
+      .then(data => {
+        if (!data.items) {
+          document.getElementById("agenda-today").innerHTML = "<div class='agenda-empty'>No events found.</div>";
+          return;
         }
 
-        const obj = { time, title: ev.summary || "(No Title)", join };
-        (group === "today" ? todayList : tomorrowList).push(obj);
-      });
+        const tz = TIMEZONE;
+        const todayStr = new Date().toLocaleDateString("en-US", { timeZone: tz });
+        const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
+        const tomorrowStr = tomorrow.toLocaleDateString("en-US", { timeZone: tz });
 
-      renderAgendaList("today", todayList);
-      renderAgendaList("tomorrow", tomorrowList);
-    }).catch(err => {
-      console.error("Calendar fetch failed:", err);
-    });
+        const todayList = [], tomorrowList = [];
+
+        data.items.forEach(ev => {
+          const evDate = new Date(ev.start.dateTime || ev.start.date);
+          const evDateStr = evDate.toLocaleDateString("en-US", { timeZone: tz });
+          const group = evDateStr === todayStr ? "today" : evDateStr === tomorrowStr ? "tomorrow" : null;
+          if (!group) return;
+
+          const time = ev.start.dateTime ? new Date(ev.start.dateTime).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", timeZone: tz }) : "All Day";
+          let join = "";
+          if (ev.description) {
+            const match = ev.description.match(/https:\/\/[^\s<\n]+/);
+            if (match) join = match[0].trim();
+          }
+
+          const obj = { time, title: ev.summary || "(No Title)", join };
+          (group === "today" ? todayList : tomorrowList).push(obj);
+        });
+
+        renderAgendaList("today", todayList);
+        renderAgendaList("tomorrow", tomorrowList);
+      })
+      .catch(err => {
+        document.getElementById("agenda-widget").innerHTML = "<div class='agenda-empty' style='color:#f44;'>Error loading calendar events.</div>";
+        console.error("Calendar fetch failed:", err);
+      });
   }
 
   function renderAgendaList(day, list) {
