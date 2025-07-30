@@ -1159,6 +1159,8 @@
 <img src="animated/envelope.svg" style="width:18px;height:18px;margin-left:6px;vertical-align:middle;"/>
 </a>
 </div>
+
+
 <script>
   function updateClock() {
     document.getElementById('banner-date').textContent = new Date().toLocaleString();
@@ -1174,151 +1176,81 @@
   }
 </script>
 <script>
-    const GCAL_ID = "support@perdigon-group.com";
-    const API_KEY = "AIzaSyDqMNGC5RUnlzSxP3vbD8WKzt_qPfUzab0";
-    const TIMEZONE = "America/Los_Angeles";
+  const GCAL_ID = "support@perdigon-group.com";
+  const API_KEY = "AIzaSyDqMNGC5RUnlzSxP3vbD8WKzt_qPfUzab0";
+  const TIMEZONE = "America/Los_Angeles";
 
-    function fetchAndRenderAgenda() {
-      const now = new Date();
-      const end = new Date(); end.setDate(now.getDate() + 2);
+  function fetchAndRenderAgenda() {
+    const now = new Date();
+    const end = new Date(); end.setDate(now.getDate() + 2);
 
-      const isoNoMs = dt => dt.toISOString().split(".")[0] + "Z";
-      const url = "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(GCAL_ID)}/events?key=${API_KEY}&singleEvents=true&orderBy=startTime&timeMin=${encodeURIComponent(isoNoMs(now))}&timeMax=${encodeURIComponent(isoNoMs(end))}&maxResults=20");
+    const isoNoMs = dt => dt.toISOString().split(".")[0] + "Z";
+    const targetUrl = `https:
+    const url = `https:
 
-      fetch(url).then(r => r.json()).then(data => {
-        if (!data.items) {
-          document.getElementById("agenda-today").innerHTML = "<div class='agenda-empty'>No events found.</div>";
-          return;
-        }
-
-        const tz = TIMEZONE;
-        const todayStr = new Date().toLocaleDateString("en-US", { timeZone: tz });
-        const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
-        const tomorrowStr = tomorrow.toLocaleDateString("en-US", { timeZone: tz });
-
-        const todayList = [], tomorrowList = [];
-
-        data.items.forEach(ev => {
-          const evDate = new Date(ev.start.dateTime || ev.start.date);
-          const evDateStr = evDate.toLocaleDateString("en-US", { timeZone: tz });
-          const group = evDateStr === todayStr ? "today" : evDateStr === tomorrowStr ? "tomorrow" : null;
-          if (!group) return;
-
-          const time = ev.start.dateTime ? new Date(ev.start.dateTime).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", timeZone: tz }) : "All Day";
-          let join = "";
-          if (ev.description) {
-            const match = ev.description.match(/https:\/\/[^\s<\n]+/);
-            if (match) join = match[0].trim();
-          }
-
-          const obj = { time, title: ev.summary || "(No Title)", join };
-          (group === "today" ? todayList : tomorrowList).push(obj);
-        });
-
-        renderAgendaList("today", todayList);
-        renderAgendaList("tomorrow", tomorrowList);
-      });
-    }
-
-    function renderAgendaList(day, list) {
-      const container = document.getElementById(`agenda-${day}`);
-      if (!list.length) {
-        container.innerHTML = "<div class='agenda-empty'>No events</div>";
+    fetch(url).then(r => r.json()).then(data => {
+      if (!data.items) {
+        document.getElementById("agenda-today").innerHTML = "<div class='agenda-empty'>No events found.</div>";
         return;
       }
-      container.innerHTML = list.map(item => `
-        <div class="agenda-event">
-          <span class="agenda-time">${item.time}</span>
-          <span class="agenda-title">${item.title}</span>
-          ${item.join ? `<a href="${item.join}" class="agenda-join" target="_blank">Join Meeting</a>` : ""}
-        </div>
-      `).join("");
-    }
 
-    function toggleAgenda(day) {
-      const el = document.getElementById(`agenda-${day}`);
-      const isHidden = el.style.display === "none";
-      el.style.display = isHidden ? "block" : "none";
-      const heading = document.querySelector(`.agenda-day[onclick*="${day}"] strong`);
-      heading.textContent = isHidden ? `${capitalize(day)} (click to minimize)` : capitalize(day);
-    }
+      const tz = TIMEZONE;
+      const todayStr = new Date().toLocaleDateString("en-US", { timeZone: tz });
+      const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
+      const tomorrowStr = tomorrow.toLocaleDateString("en-US", { timeZone: tz });
 
-    function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+      const todayList = [], tomorrowList = [];
 
-    document.addEventListener("DOMContentLoaded", fetchAndRenderAgenda);
-  </script>
-<script>
-    const GCAL_ID = "support@perdigon-group.com";
-    const API_KEY = "AIzaSyDqMNGC5RUnlzSxP3vbD8WKzt_qPfUzab0";
-    const TIMEZONE = "America/Los_Angeles";
+      data.items.forEach(ev => {
+        const evDate = new Date(ev.start.dateTime || ev.start.date);
+        const evDateStr = evDate.toLocaleDateString("en-US", { timeZone: tz });
+        const group = evDateStr === todayStr ? "today" : evDateStr === tomorrowStr ? "tomorrow" : null;
+        if (!group) return;
 
-    function fetchAndRenderAgenda() {
-      const now = new Date();
-      const end = new Date(); end.setDate(now.getDate() + 2);
-
-      const isoNoMs = dt => dt.toISOString().split(".")[0] + "Z";
-      const url = `https:
-
-      fetch(url).then(r => r.json()).then(data => {
-        if (!data.items) {
-          document.getElementById("agenda-today").innerHTML = "<div class='agenda-empty'>No events found.</div>";
-          return;
+        const time = ev.start.dateTime ? new Date(ev.start.dateTime).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", timeZone: tz }) : "All Day";
+        let join = "";
+        if (ev.description) {
+          const match = ev.description.match(/https:\/\/[^\s<\n]+/);
+          if (match) join = match[0].trim();
         }
 
-        const tz = TIMEZONE;
-        const todayStr = new Date().toLocaleDateString("en-US", { timeZone: tz });
-        const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
-        const tomorrowStr = tomorrow.toLocaleDateString("en-US", { timeZone: tz });
-
-        const todayList = [], tomorrowList = [];
-
-        data.items.forEach(ev => {
-          const evDate = new Date(ev.start.dateTime || ev.start.date);
-          const evDateStr = evDate.toLocaleDateString("en-US", { timeZone: tz });
-          const group = evDateStr === todayStr ? "today" : evDateStr === tomorrowStr ? "tomorrow" : null;
-          if (!group) return;
-
-          const time = ev.start.dateTime ? new Date(ev.start.dateTime).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", timeZone: tz }) : "All Day";
-          let join = "";
-          if (ev.description) {
-            const match = ev.description.match(/https:\/\/[^\s<\n]+/);
-            if (match) join = match[0].trim();
-          }
-
-          const obj = { time, title: ev.summary || "(No Title)", join };
-          (group === "today" ? todayList : tomorrowList).push(obj);
-        });
-
-        renderAgendaList("today", todayList);
-        renderAgendaList("tomorrow", tomorrowList);
+        const obj = { time, title: ev.summary || "(No Title)", join };
+        (group === "today" ? todayList : tomorrowList).push(obj);
       });
+
+      renderAgendaList("today", todayList);
+      renderAgendaList("tomorrow", tomorrowList);
+    }).catch(err => {
+      console.error("Calendar fetch failed:", err);
+    });
+  }
+
+  function renderAgendaList(day, list) {
+    const container = document.getElementById(`agenda-${day}`);
+    if (!list.length) {
+      container.innerHTML = "<div class='agenda-empty'>No events</div>";
+      return;
     }
+    container.innerHTML = list.map(item => `
+      <div class="agenda-event">
+        <span class="agenda-time">${item.time}</span>
+        <span class="agenda-title">${item.title}</span>
+        ${item.join ? `<a href="${item.join}" class="agenda-join" target="_blank">Join Meeting</a>` : ""}
+      </div>
+    `).join("");
+  }
 
-    function renderAgendaList(day, list) {
-      const container = document.getElementById(`agenda-${day}`);
-      if (!list.length) {
-        container.innerHTML = "<div class='agenda-empty'>No events</div>";
-        return;
-      }
-      container.innerHTML = list.map(item => `
-        <div class="agenda-event">
-          <span class="agenda-time">${item.time}</span>
-          <span class="agenda-title">${item.title}</span>
-          ${item.join ? `<a href="${item.join}" class="agenda-join" target="_blank">Join Meeting</a>` : ""}
-        </div>
-      `).join("");
-    }
+  function toggleAgenda(day) {
+    const el = document.getElementById(`agenda-${day}`);
+    const isHidden = el.style.display === "none";
+    el.style.display = isHidden ? "block" : "none";
+    const heading = document.querySelector(\`.agenda-day[onclick*="\${day}"] strong\`);
+    heading.textContent = isHidden ? \`\${capitalize(day)} (click to minimize)\` : capitalize(day);
+  }
 
-    function toggleAgenda(day) {
-      const el = document.getElementById(`agenda-${day}`);
-      const isHidden = el.style.display === "none";
-      el.style.display = isHidden ? "block" : "none";
-      const heading = document.querySelector(`.agenda-day[onclick*="${day}"] strong`);
-      heading.textContent = isHidden ? `${capitalize(day)} (click to minimize)` : capitalize(day);
-    }
+  function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
 
-    function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
-
-    document.addEventListener("DOMContentLoaded", fetchAndRenderAgenda);
-  </script></body>
+  document.addEventListener("DOMContentLoaded", fetchAndRenderAgenda);
+</script>
+</body>
 </html>
