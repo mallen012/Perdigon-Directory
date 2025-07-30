@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cloud Service Status</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
+  <style>
+    a {
+      color: #f6c700;
+      text-decoration: underline;
+    }
+    a:visited {
+      color: #f6c700;
+    }
+    a:hover {
+      color: #fff066;
+    }
+    
+    @media (max-width: 600px) {
+      body {
+        padding: 12px;
+        font-size: 0.85em;
+      }
+      .status-widget {
+        padding: 12px;
+        margin-bottom: 16px;
+      }
+      .status-header {
+        font-size: 1em;
+      }
+      .svc-row {
+        font-size: 0.88em;
+      }
+    }
+    .status-widget {
+      max-width: 420px;
+      width: 100%;
+    }
+    
+    body {
+      background: #1c1f26;
+      color: #f3f3fa;
+      font-family: Montserrat, sans-serif;
+      padding: 24px;
+      font-size: 0.92em;
+    }
+    h2 {
+      color: #81e4f7;
+      font-size: 1.2em;
+    }
+    .status-widget {
+      background: #1b222c;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px #0003;
+    }
+    .status-header {
+      color: #81e4f7;
+      font-weight: 700;
+      font-size: 1.05em;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    .svc-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95em;
+      margin-top: 6px;
+    }
+    .svc-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      display: inline-block;
+      background: #888;
+      border: 2px solid #23272e;
+    }
+    .svc-msg {
+      font-size: 0.9em;
+      color: #eee;
+      margin-left: 6px;
+    }
+    .section-footer {
+      margin-top: 12px;
+      font-size: 0.85em;
+      text-align: right;
+    }
+    .section-footer a {
+      color: #ffe066;
+      text-decoration: underline;
+    }
+    .incident-feed {
+      margin-top: 10px;
+      color: #ccc;
+      font-size: 0.88em;
+    }
+    .incident-feed div {
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="status-widget">
+  <a href="https://status.webex.com/commercial/status?lang=en_US" target="_blank" class="status-header">Webex Services</a>
+  <div class="svc-row" data-svc="calling"><span class="svc-dot" id="svc-calling-dot"></span>Calling <span class="svc-msg" id="svc-calling-msg"></span></div>
+  <div class="svc-row" data-svc="app"><span class="svc-dot" id="svc-app-dot"></span>App <span class="svc-msg" id="svc-app-msg"></span></div>
+  <div class="svc-row" data-svc="controlhub"><span class="svc-dot" id="svc-controlhub-dot"></span>Control Hub <span class="svc-msg" id="svc-controlhub-msg"></span></div>
+  <div class="svc-row" data-svc="meetings"><span class="svc-dot" id="svc-meetings-dot"></span>Meetings <span class="svc-msg" id="svc-meetings-msg"></span></div>
+  <div class="svc-row" data-svc="contactcenter"><span class="svc-dot" id="svc-contactcenter-dot"></span>Contact Center <span class="svc-msg" id="svc-contactcenter-msg"></span></div>
+  <div class="incident-feed" id="feed-webex"></div>
+  <div class="section-footer"><a href="https://status.webex.com/commercial/status?lang=en_US" target="_blank">More info &raquo;</a></div>
+</div>
+
+<div class="status-widget">
+  <a href="https://status.openai.com/" target="_blank" class="status-header">OpenAI (ChatGPT)</a>
+  <div class="svc-row"><span class="svc-dot" id="svc-openai-dot"></span>ChatGPT <span class="svc-msg" id="svc-openai-msg"></span></div>
+  <div class="incident-feed" id="feed-openai"></div>
+  <div class="section-footer"><a href="https://status.openai.com/" target="_blank">More info &raquo;</a></div>
+</div>
+
+<div class="status-widget">
+  <a href="https://status.x.ai/" target="_blank" class="status-header">Grok (xAI)</a>
+  <div class="svc-row"><span class="svc-dot" id="svc-grok-dot"></span>Grok <span class="svc-msg" id="svc-grok-msg"></span></div>
+  <div class="incident-feed" id="feed-grok"></div>
+  <div class="section-footer"><a href="https://status.x.ai/" target="_blank">More info &raquo;</a></div>
+</div>
+
+<div class="status-widget">
+  <a href="https://zohostatus.com/datacenter.html?dc=us" target="_blank" class="status-header">Zoho (US Services)</a>
+  <div class="svc-row"><span class="svc-dot" style="background:#2ecc40;"></span>CRM Plus <span class="svc-msg">Operational</span></div>
+  <div class="svc-row"><span class="svc-dot" style="background:#2ecc40;"></span>Desk <span class="svc-msg">Operational</span></div>
+  <div class="svc-row"><span class="svc-dot" style="background:#2ecc40;"></span>Campaigns <span class="svc-msg">Operational</span></div>
+  <div class="svc-row"><span class="svc-dot" style="background:#2ecc40;"></span>Meeting <span class="svc-msg">Operational</span></div>
+  <div class="svc-row"><span class="svc-dot" style="background:#2ecc40;"></span>SalesIQ <span class="svc-msg">Operational</span></div>
+  <div class="svc-row"><span class="svc-dot" style="background:#2ecc40;"></span>Assist <span class="svc-msg">Operational</span></div>
+  <div class="svc-row"><span class="svc-dot" style="background:#2ecc40;"></span>Sites <span class="svc-msg">Operational</span></div>
+  <div class="svc-row"><span class="svc-dot" style="background:#2ecc40;"></span>Cliq <span class="svc-msg">Operational</span></div>
+  <div class="section-footer"><a href="https://zohostatus.com/datacenter.html?dc=us" target="_blank">More info &raquo;</a></div>
+</div>
+
+<div class="status-widget">
+  <a href="https://status.dialpad.com/#" target="_blank" class="status-header">Dialpad (North America)</a>
+  <div class="svc-row"><span class="svc-dot" style="background:#2ecc40;"></span>Calling - Inbound <span class="svc-msg">Operational</span></div>
+  <div class="svc-row"><span class="svc-dot" style="background:#2ecc40;"></span>Calling - Outbound <span class="svc-msg">Operational</span></div>
+  <div class="svc-row"><span class="svc-dot" style="background:#2ecc40;"></span>Carrier Networks <span class="svc-msg">Operational</span></div>
+  <div class="svc-row"><span class="svc-dot" style="background:#2ecc40;"></span>Meetings <span class="svc-msg">Operational</span></div>
+  <div class="svc-row"><span class="svc-dot" style="background:#2ecc40;"></span>Contact Center <span class="svc-msg">Operational</span></div>
+  <div class="svc-row"><span class="svc-dot" style="background:#2ecc40;"></span>Messaging <span class="svc-msg">Operational</span></div>
+  <div class="svc-row"><span class="svc-dot" style="background:#2ecc40;"></span>Dialpad Ai <span class="svc-msg">Operational</span></div>
+  <div class="incident-feed" id="feed-dialpad"></div>
+  <div class="section-footer"><a href="https://status.dialpad.com/#" target="_blank">More info &raquo;</a></div>
+</div>
+
+<script>
+function setSvcStatus(svc, color, msg) {
+  const dot = document.getElementById("svc-" + svc + "-dot");
+  const label = document.getElementById("svc-" + svc + "-msg");
+  if (dot) dot.style.background = color;
+  if (label) label.textContent = msg;
+}
+
+function fetchRssFeed(url, cb) {
+  fetch("https://corsproxy.io/?" + encodeURIComponent(url))
+    .then(r => r.text())
+    .then(txt => cb(txt))
+    .catch(() => cb(""));
+}
+
+function parseAndUpdateFeed(txt, containerId) {
+  if (!txt) return;
+  const parser = new DOMParser();
+  const xml = parser.parseFromString(txt, "application/xml");
+  const entries = Array.from(xml.querySelectorAll("entry, item"));
+  const cutoff = new Date(Date.now() - 48 * 60 * 60 * 1000);
+  const feed = entries.map(e => {
+    const title = e.querySelector("title")?.textContent || "Untitled";
+    const pub = new Date(e.querySelector("published, pubDate")?.textContent);
+    const link = e.querySelector("link")?.getAttribute("href") || "#";
+    if (pub < cutoff) return null;
+    return `<div><a href="${link}" target="_blank">${title}</a><br><span style="color:#aaa;">${pub.toLocaleString()}</span></div>`;
+  }).filter(Boolean).join("") || "<div>No incidents in last 48 hours.</div>";
+  document.getElementById(containerId).innerHTML = feed;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const feeds = {
+    webex: "https://status.webex.com/commercial/rss",
+    openai: "https://status.openai.com/history.rss",
+    grok: "https://status.x.ai/history.rss",
+    dialpad: "https://status.dialpad.com/history.atom"
+  };
+  fetchRssFeed(feeds.webex, txt => parseAndUpdateFeed(txt, "feed-webex"));
+  fetchRssFeed(feeds.openai, txt => parseAndUpdateFeed(txt, "feed-openai"));
+  fetchRssFeed(feeds.grok, txt => parseAndUpdateFeed(txt, "feed-grok"));
+  fetchRssFeed(feeds.dialpad, txt => parseAndUpdateFeed(txt, "feed-dialpad"));
+
+  const webexSvcs = ["calling", "app", "controlhub", "meetings", "contactcenter"];
+  webexSvcs.forEach(svc => {
+    fetchRssFeed("https://status.webex.com/commercial/rss/services/WEBEX" + svc.toUpperCase(), txt => {
+      const status = /incident|outage|degrad|partial/i.test(txt) ? ["#e74c3c", "Incident"] :
+                     /maintenance|notice|update/i.test(txt) ? ["#f6c700", "Maintenance"] :
+                     ["#2ecc40", "Operational"];
+      setSvcStatus(svc, status[0], status[1]);
+    });
+  });
+
+  fetchRssFeed(feeds.openai, txt => {
+    const status = /incident|down|degrad|outage/i.test(txt) ? ["#e74c3c", "Incident"] :
+                   /operational|resolved/i.test(txt) ? ["#2ecc40", "Operational"] :
+                   ["#f6c700", "Notice"];
+    setSvcStatus("openai", status[0], status[1]);
+  });
+
+  fetchRssFeed(feeds.grok, txt => {
+    const status = /incident|down|degrad|outage/i.test(txt) ? ["#e74c3c", "Incident"] :
+                   /operational|resolved/i.test(txt) ? ["#2ecc40", "Operational"] :
+                   ["#f6c700", "Notice"];
+    setSvcStatus("grok", status[0], status[1]);
+  });
+});
+</script>
+
+</body>
+</html>
