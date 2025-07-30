@@ -1185,8 +1185,8 @@
     const end = new Date(); end.setDate(now.getDate() + 2);
 
     const isoNoMs = dt => dt.toISOString().split(".")[0] + "Z";
-    const targetUrl = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(GCAL_ID)}/events?key=${API_KEY}&singleEvents=true&orderBy=startTime&timeMin=${encodeURIComponent(isoNoMs(now))}&timeMax=${encodeURIComponent(isoNoMs(end))}&maxResults=20`;
-    const url = `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`;
+    const targetUrl = `https:
+    const url = `https:
 
     fetch(url).then(r => r.json()).then(data => {
       if (!data.items) {
@@ -1244,8 +1244,8 @@
     const el = document.getElementById(`agenda-${day}`);
     const isHidden = el.style.display === "none";
     el.style.display = isHidden ? "block" : "none";
-    const heading = document.querySelector(\`.agenda-day[onclick*="\${day}"] strong\`);
-    heading.textContent = isHidden ? \`\${capitalize(day)} (click to minimize)\` : capitalize(day);
+    const heading = document.querySelector(`.agenda-day[onclick*="${day}"] strong`);
+    heading.textContent = isHidden ? `${capitalize(day)} (click to minimize)` : capitalize(day);
   }
 
   function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
