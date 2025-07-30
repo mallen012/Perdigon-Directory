@@ -518,6 +518,13 @@
         <td><a href="mailto:max@wcallens.com"><img class="envelope-icon" src="https://mallen012.github.io/Perdigon-Directory/animated/envelope.svg"/></a></td>
         <td>Account Executive</td>
       </tr>
+      <tr>
+        <td>Tate Allen</td>
+        <td>Tate</td>
+        <td class="number"></td>
+        <td></td>
+        <td></td>
+      </tr>
 </tbody>
 </table>
 </div>
@@ -588,8 +595,8 @@
     const end = new Date(); end.setDate(now.getDate() + 2);
     const isoNoMs = dt => dt.toISOString().split(".")[0] + "Z";
 
-    const gcalUrl = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(GCAL_ID)}/events?key=${API_KEY}&singleEvents=true&orderBy=startTime&timeMin=${encodeURIComponent(isoNoMs(now))}&timeMax=${encodeURIComponent(isoNoMs(end))}&maxResults=20`;
-    const url = `https://api.allorigins.win/raw?url=${encodeURIComponent(gcalUrl)}`;
+    const gcalUrl = `https:
+    const url = `https:
 
     fetch(url)
       .then(r => r.json())
