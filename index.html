@@ -1137,7 +1137,7 @@
       const end = new Date(); end.setDate(now.getDate() + 2);
 
       const isoNoMs = dt => dt.toISOString().split(".")[0] + "Z";
-      const url = `https:
+      const url = "https://corsproxy.io/?https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(GCAL_ID)}/events?key=${API_KEY}&singleEvents=true&orderBy=startTime&timeMin=${encodeURIComponent(isoNoMs(now))}&timeMax=${encodeURIComponent(isoNoMs(end))}&maxResults=20";
 
       fetch(url).then(r => r.json()).then(data => {
         if (!data.items) {
