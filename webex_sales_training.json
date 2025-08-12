@@ -1,0 +1,265 @@
+{
+  "templateTitle": "Sales Planning — Webex Customer Acquisition",
+  "modules": [
+    {
+      "name": "Introduction to Webex",
+      "description": "Understand the basics of Webex Calling and Meetings.",
+      "tasks": [
+        {
+          "name": "Watch Introductory Video",
+          "description": "Watch the introductory video on Webex Calling and Meetings.",
+          "durationHours": 1,
+          "priority": "High",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [
+            {"title": "Introduction to Webex", "url": "https://www.youtube.com/watch?v=IntroToWebex", "gated": false},
+            {"title": "Cisco Partner Learning: Webex Basics", "url": "https://partnerlearning.cisco.com/", "gated": true},
+            {"title": "Cisco SalesConnect: Webex Overview", "url": "https://salesconnect.cisco.com/", "gated": true}
+          ],
+          "deliverable": "Completed video notes"
+        },
+        {
+          "name": "Read Evolution from Older SKUs",
+          "description": "Read about the evolution from older Cisco SKUs to Webex.",
+          "durationHours": 1,
+          "priority": "Medium",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [
+            {"title": "Webex Evolution", "url": "https://www.cisco.com/c/en/us/products/collaboration-endpoints/webex.html", "gated": false}
+          ],
+          "deliverable": "Summary paragraph"
+        },
+        {
+          "name": "Explore Webex Interface",
+          "description": "Explore Webex interface through a guided demo.",
+          "durationHours": 2,
+          "priority": "High",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [
+            {"title": "Webex Demo", "url": "https://www.webex.com/demo.html", "gated": false}
+          ],
+          "deliverable": "Demo feedback form"
+        },
+        {
+          "name": "Discuss Key Features",
+          "description": "Discuss key features in small groups.",
+          "durationHours": 1,
+          "priority": "Medium",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [],
+          "deliverable": "Group discussion notes"
+        },
+        {
+          "name": "Identify Customer Benefits",
+          "description": "Identify potential customer benefits in different sectors.",
+          "durationHours": 1,
+          "priority": "Medium",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [],
+          "deliverable": "List of benefits"
+        }
+      ]
+    },
+    {
+      "name": "Customer Use Cases",
+      "description": "Apply Webex solutions to specific industry scenarios.",
+      "tasks": [
+        {
+          "name": "Study SMB Use Case",
+          "description": "Study SMB use case and discuss in pairs.",
+          "durationHours": 1,
+          "priority": "High",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [
+            {"title": "SMB Solutions", "url": "https://www.cisco.com/c/en/us/solutions/small-business.html", "gated": false}
+          ],
+          "deliverable": "Use case analysis"
+        },
+        {
+          "name": "Analyze Healthcare Challenges",
+          "description": "Analyze healthcare communication challenges.",
+          "durationHours": 1,
+          "priority": "High",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [
+            {"title": "Healthcare Solutions", "url": "https://www.cisco.com/c/en/us/solutions/industries/healthcare.html", "gated": false}
+          ],
+          "deliverable": "Challenge report"
+        },
+        {
+          "name": "Explore Education Needs",
+          "description": "Explore education sector needs for remote learning.",
+          "durationHours": 1,
+          "priority": "Medium",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [
+            {"title": "Education Solutions", "url": "https://www.cisco.com/c/en/us/solutions/industries/education.html", "gated": false}
+          ],
+          "deliverable": "Needs assessment"
+        },
+        {
+          "name": "Review Retail Tools",
+          "description": "Review retail industry collaboration tools.",
+          "durationHours": 1,
+          "priority": "Medium",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [
+            {"title": "Retail Solutions", "url": "https://www.cisco.com/c/en/us/solutions/industries/retail.html", "gated": false}
+          ],
+          "deliverable": "Tool review"
+        },
+        {
+          "name": "Examine Manufacturing Improvements",
+          "description": "Examine manufacturing process improvements with Webex.",
+          "durationHours": 1,
+          "priority": "Medium",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [
+            {"title": "Manufacturing Solutions", "url": "https://www.cisco.com/c/en/us/solutions/industries/manufacturing.html", "gated": false}
+          ],
+          "deliverable": "Improvement plan"
+        },
+        {
+          "name": "Understand Distributed Teams",
+          "description": "Understand distributed teams' communication.",
+          "durationHours": 1,
+          "priority": "Medium",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [],
+          "deliverable": "Communication strategy"
+        },
+        {
+          "name": "Learn Contact Center Solutions",
+          "description": "Learn about contact center handoff solutions.",
+          "durationHours": 1,
+          "priority": "Medium",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [],
+          "deliverable": "Solution outline"
+        },
+        {
+          "name": "Discuss Field Sales Enablement",
+          "description": "Discuss field sales enablement.",
+          "durationHours": 1,
+          "priority": "Medium",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [],
+          "deliverable": "Enablement discussion"
+        }
+      ]
+    },
+    {
+      "name": "Transition Strategies",
+      "description": "Develop strategies for migrating customers from EoL SKUs to Webex.",
+      "tasks": [
+        {
+          "name": "Review EoL SKU List",
+          "description": "Review EoL SKU list and Webex alternatives.",
+          "durationHours": 1,
+          "priority": "High",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [],
+          "deliverable": "Alternative list"
+        },
+        {
+          "name": "Develop SMB Migration Pitch",
+          "description": "Develop a migration pitch for SMBs.",
+          "durationHours": 1,
+          "priority": "High",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [],
+          "deliverable": "Pitch script"
+        },
+        {
+          "name": "Create Healthcare Communication Plan",
+          "description": "Create a communication plan for healthcare clients.",
+          "durationHours": 1,
+          "priority": "High",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [],
+          "deliverable": "Communication plan"
+        },
+        {
+          "name": "Draft Email Template for Education",
+          "description": "Draft an email template for educational institutions.",
+          "durationHours": 1,
+          "priority": "Medium",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [],
+          "deliverable": "Email template"
+        },
+        {
+          "name": "Practice Phone Call Scripts",
+          "description": "Practice phone call scripts for retail customers.",
+          "durationHours": 1,
+          "priority": "Medium",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [],
+          "deliverable": "Call script"
+        },
+        {
+          "name": "Design Follow-up Strategy",
+          "description": "Design a follow-up strategy for manufacturing leads.",
+          "durationHours": 1,
+          "priority": "Medium",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [],
+          "deliverable": "Follow-up plan"
+        }
+      ]
+    },
+    {
+      "name": "CRM and Sales Tools",
+      "description": "Utilize Zoho CRM effectively for customer management.",
+      "tasks": [
+        {
+          "name": "Introduction to Zoho CRM",
+          "description": "Introduction to Zoho CRM basics.",
+          "durationHours": 1,
+          "priority": "High",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [
+            {"title": "Zoho CRM Tutorial", "url": "https://www.youtube.com/watch?v=ZohoCRMIntro", "gated": false}
+          ],
+          "deliverable": "CRM notes"
+        },
+        {
+          "name": "Tag-based List Creation",
+          "description": "Tag-based list creation and management.",
+          "durationHours": 1,
+          "priority": "Medium",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [],
+          "deliverable": "Tag list"
+        },
+        {
+          "name": "Integrate Webex with Zoho",
+          "description": "Integrate Webex tools with Zoho CRM.",
+          "durationHours": 1,
+          "priority": "High",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [],
+          "deliverable": "Integration report"
+        },
+        {
+          "name": "Monitor Customer Interactions",
+          "description": "Monitor and track customer interactions.",
+          "durationHours": 1,
+          "priority": "Medium",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [],
+          "deliverable": "Interaction log"
+        },
+        {
+          "name": "Generate Sales Reports",
+          "description": "Generate sales reports using Zoho CRM.",
+          "durationHours": 1,
+          "priority": "Medium",
+          "tags": ["Webex", "Calling", "Meetings", "Beginner"],
+          "resources": [],
+          "deliverable": "Sales report"
+        }
+      ]
+    }
+  ]
+}
